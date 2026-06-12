@@ -166,3 +166,64 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 3D Perspective */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Floating Particles Animation */
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Gradient Border Animation */
+@keyframes borderGradient {
+  0% {
+    border-image-source: linear-gradient(0deg, #8b5cf6, #06b6d4);
+  }
+  50% {
+    border-image-source: linear-gradient(180deg, #8b5cf6, #06b6d4);
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, #8b5cf6, #06b6d4);
+  }
+}
+
+/* Glow Text */
+.glow-text {
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+/* Hover Card Effect */
+.hover-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Smooth Gradient Transition */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Loading Animation for Images */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img.loading {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
