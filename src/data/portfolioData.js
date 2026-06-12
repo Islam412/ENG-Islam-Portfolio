@@ -32,56 +32,168 @@ export const skillsData = {
   ]
 };
 
+// مشاريع جديدة مع تصنيفات
 export const projectsData = [
+  // Frontend Projects
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    titleAr: 'منصة تجارة إلكترونية',
-    description: 'Full-stack e-commerce platform with payment integration, cart system, and admin dashboard',
-    descriptionAr: 'منصة تجارة إلكترونية فول ستاك مع تكامل الدفع ونظام سلة ولوحة تحكم إدارية',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce',
-    technologies: ['React', 'Django', 'PostgreSQL', 'Redis', 'Docker', 'MySQL'],
+    title: 'E-Commerce Frontend',
+    titleAr: 'واجهة متجر إلكتروني',
+    description: 'Modern e-commerce frontend with shopping cart, product filtering, and responsive design',
+    descriptionAr: 'واجهة متجر إلكتروني حديثة مع سلة تسوق وتصفية المنتجات',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce+FE',
+    technologies: ['React', 'Tailwind CSS', 'Redux', 'Axios'],
+    category: 'frontend',
+    subcategory: 'React',
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
   },
   {
     id: 2,
-    title: 'Task Management System',
-    titleAr: 'نظام إدارة المهام',
-    description: 'Real-time task management app with team collaboration features',
-    descriptionAr: 'تطبيق إدارة مهام لحظي مع ميزات تعاون الفريق',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Task+Manager',
-    technologies: ['React', 'Django REST', 'Celery', 'WebSocket', 'MySQL', 'SQL'],
+    title: 'Portfolio Website',
+    titleAr: 'موقع بورتفوليو',
+    description: 'Creative portfolio website with animations and dark mode',
+    descriptionAr: 'موقع بورتفوليو إبداعي مع أنيميشن ووضع ليلي',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Portfolio',
+    technologies: ['React', 'Framer Motion', 'Tailwind CSS'],
+    category: 'frontend',
+    subcategory: 'React',
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
   },
   {
     id: 3,
-    title: 'Analytics Dashboard',
-    titleAr: 'لوحة تحليلات',
-    description: 'Interactive dashboard with real-time data visualization and reports',
-    descriptionAr: 'لوحة تحكم تفاعلية مع تصور بيانات لحظي وتقارير',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Analytics',
-    technologies: ['React', 'Chart.js', 'Django', 'PostgreSQL', 'SQL'],
+    title: 'Dashboard UI',
+    titleAr: 'واجهة لوحة تحكم',
+    description: 'Admin dashboard with charts, tables, and data visualization',
+    descriptionAr: 'لوحة تحكم إدارية مع رسوم بيانية وجداول',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Dashboard',
+    technologies: ['React', 'Chart.js', 'Tailwind CSS'],
+    category: 'frontend',
+    subcategory: 'React',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: false
+  },
+
+  // Backend Projects
+  {
+    id: 4,
+    title: 'RESTful API',
+    titleAr: 'API RESTful',
+    description: 'Scalable REST API with authentication, rate limiting, and documentation',
+    descriptionAr: 'API RESTful قابلة للتطوير مع توثيق ومصادقة',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=REST+API',
+    technologies: ['Django', 'Django REST', 'JWT', 'PostgreSQL'],
+    category: 'backend',
+    subcategory: 'Django',
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
   },
   {
-    id: 4,
+    id: 5,
+    title: 'Task Queue System',
+    titleAr: 'نظام مهام غير متزامن',
+    description: 'Background task processing with Celery and Redis',
+    descriptionAr: 'معالجة مهام خلفية باستخدام Celery و Redis',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Task+Queue',
+    technologies: ['Python', 'Celery', 'Redis', 'Django'],
+    category: 'backend',
+    subcategory: 'Python',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: false
+  },
+  {
+    id: 6,
+    title: 'Database Optimizer',
+    titleAr: 'محسن قواعد البيانات',
+    description: 'SQL query optimizer with performance monitoring',
+    descriptionAr: 'محسن استعلامات SQL مع مراقبة الأداء',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Database',
+    technologies: ['Python', 'SQL', 'MySQL', 'PostgreSQL'],
+    category: 'backend',
+    subcategory: 'SQL',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: false
+  },
+
+  // Full Stack Projects
+  {
+    id: 7,
+    title: 'E-Commerce Platform',
+    titleAr: 'منصة تجارة إلكترونية',
+    description: 'Full-stack e-commerce platform with payment integration, cart system, and admin dashboard',
+    descriptionAr: 'منصة تجارة إلكترونية فول ستاك مع تكامل الدفع',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce',
+    technologies: ['React', 'Django', 'PostgreSQL', 'Redis', 'Docker', 'MySQL'],
+    category: 'fullstack',
+    subcategory: 'Django-React',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: true
+  },
+  {
+    id: 8,
+    title: 'Task Management System',
+    titleAr: 'نظام إدارة المهام',
+    description: 'Real-time task management app with team collaboration features',
+    descriptionAr: 'تطبيق إدارة مهام لحظي مع ميزات تعاون الفريق',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Task+Manager',
+    technologies: ['React', 'Django REST', 'Celery', 'WebSocket', 'MySQL', 'SQL'],
+    category: 'fullstack',
+    subcategory: 'Django-React',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: true
+  },
+  {
+    id: 9,
+    title: 'Analytics Dashboard',
+    titleAr: 'لوحة تحليلات',
+    description: 'Interactive dashboard with real-time data visualization and reports',
+    descriptionAr: 'لوحة تحكم تفاعلية مع تصور بيانات لحظي',
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Analytics',
+    technologies: ['React', 'Chart.js', 'Django', 'PostgreSQL', 'SQL'],
+    category: 'fullstack',
+    subcategory: 'Django-React',
+    liveLink: 'https://example.com',
+    githubLink: 'https://github.com/Islam412',
+    featured: true
+  },
+  {
+    id: 10,
     title: 'Social Media API',
     titleAr: 'API لوسائل التواصل الاجتماعي',
     description: 'RESTful API for social media platform with authentication and real-time features',
-    descriptionAr: 'RESTful API لمنصة تواصل اجتماعي مع توثيق وميزات لحظية',
+    descriptionAr: 'RESTful API لمنصة تواصل اجتماعي',
     image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Social+API',
     technologies: ['Django REST', 'JWT', 'Redis', 'PostgreSQL', 'MySQL'],
+    category: 'backend',
+    subcategory: 'Django',
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: false
   }
 ];
+
+// إحصائيات المشاريع حسب التصنيف
+export const projectStats = {
+  total: projectsData.length,
+  frontend: projectsData.filter(p => p.category === 'frontend').length,
+  backend: projectsData.filter(p => p.category === 'backend').length,
+  fullstack: projectsData.filter(p => p.category === 'fullstack').length,
+  technologies: {
+    React: projectsData.filter(p => p.technologies.includes('React')).length,
+    Django: projectsData.filter(p => p.technologies.includes('Django')).length,
+    Python: projectsData.filter(p => p.technologies.includes('Python')).length,
+    SQL: projectsData.filter(p => p.technologies.includes('SQL') || p.technologies.includes('MySQL') || p.technologies.includes('PostgreSQL')).length,
+  }
+};
 
 export const personalInfo = {
   name: 'Islam Hamdy',
