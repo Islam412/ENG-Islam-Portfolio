@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { 
-  FaCode, FaGlobe, FaUsers, FaAward, 
+  FaCode, FaUsers, FaAward, 
   FaEnvelope, FaPhone, FaLaptopCode, FaGithub, FaLinkedin, 
   FaFacebook, FaInstagram, FaQuoteLeft, FaMapMarkerAlt 
 } from 'react-icons/fa';
@@ -132,7 +132,7 @@ const About = () => {
               </p>
             </div>
             
-            {/* Stats Grid - 2x2 */}
+            {/* Stats Grid - 2x2 (Years Exp موجود مرة واحدة فقط) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {stats.map((stat, index) => (
                 <motion.div
@@ -183,8 +183,8 @@ const About = () => {
               </motion.a>
             </div>
 
-            {/* Location & Experience (غير مكرر) */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* Location فقط (تم حذف Experience المكرر) */}
+            <div className="grid grid-cols-1 gap-3">
               <motion.div 
                 className="flex items-center gap-3 p-3 bg-gray-900/50 rounded-xl border border-gray-800"
               >
@@ -194,17 +194,6 @@ const About = () => {
                 <div>
                   <div className="text-[9px] text-gray-500">Location</div>
                   <div className="text-xs text-gray-300">{personalInfo.location}</div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-xl border border-purple-500/20"
-                whileHover={{ scale: 1.02 }}
-              >
-                <FaLaptopCode className="w-4 h-4 text-purple-500" />
-                <div>
-                  <div className="text-[9px] text-gray-500">Experience</div>
-                  <div className="text-xs text-white font-medium">5+ Years</div>
                 </div>
               </motion.div>
             </div>
