@@ -17,6 +17,8 @@ export const skillsData = {
     { name: 'Python', icon: SiPython, color: '#3776AB', level: 85 },
     { name: 'Django', icon: SiDjango, color: '#092E20', level: 80 },
     { name: 'REST API', icon: SiReact, color: '#FF6C37', level: 85 },
+    { name: 'MySQL', icon: SiMysql, color: '#4479A1', level: 80 },
+    { name: 'SQL', icon: SiMysql, color: '#4479A1', level: 78 },
     { name: 'PostgreSQL', icon: SiMysql, color: '#336791', level: 75 },
     { name: 'MongoDB', icon: SiMongodb, color: '#47A248', level: 75 },
   ],
@@ -37,8 +39,8 @@ export const projectsData = [
     titleAr: 'منصة تجارة إلكترونية',
     description: 'Full-stack e-commerce platform with payment integration, cart system, and admin dashboard',
     descriptionAr: 'منصة تجارة إلكترونية فول ستاك مع تكامل الدفع ونظام سلة ولوحة تحكم إدارية',
-    image: 'https://via.placeholder.com/600x400',
-    technologies: ['React', 'Django', 'PostgreSQL', 'Redis', 'Docker'],
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce',
+    technologies: ['React', 'Django', 'PostgreSQL', 'Redis', 'Docker', 'MySQL'],
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
@@ -49,8 +51,8 @@ export const projectsData = [
     titleAr: 'نظام إدارة المهام',
     description: 'Real-time task management app with team collaboration features',
     descriptionAr: 'تطبيق إدارة مهام لحظي مع ميزات تعاون الفريق',
-    image: 'https://via.placeholder.com/600x400',
-    technologies: ['React', 'Django REST', 'Celery', 'WebSocket'],
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Task+Manager',
+    technologies: ['React', 'Django REST', 'Celery', 'WebSocket', 'MySQL', 'SQL'],
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
@@ -61,8 +63,8 @@ export const projectsData = [
     titleAr: 'لوحة تحليلات',
     description: 'Interactive dashboard with real-time data visualization and reports',
     descriptionAr: 'لوحة تحكم تفاعلية مع تصور بيانات لحظي وتقارير',
-    image: 'https://via.placeholder.com/600x400',
-    technologies: ['React', 'Chart.js', 'Django', 'PostgreSQL'],
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Analytics',
+    technologies: ['React', 'Chart.js', 'Django', 'PostgreSQL', 'SQL'],
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: true
@@ -73,8 +75,8 @@ export const projectsData = [
     titleAr: 'API لوسائل التواصل الاجتماعي',
     description: 'RESTful API for social media platform with authentication and real-time features',
     descriptionAr: 'RESTful API لمنصة تواصل اجتماعي مع توثيق وميزات لحظية',
-    image: 'https://via.placeholder.com/600x400',
-    technologies: ['Django REST', 'JWT', 'Redis', 'PostgreSQL'],
+    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Social+API',
+    technologies: ['Django REST', 'JWT', 'Redis', 'PostgreSQL', 'MySQL'],
     liveLink: 'https://example.com',
     githubLink: 'https://github.com/Islam412',
     featured: false
@@ -97,6 +99,6 @@ export const personalInfo = {
   instagram: 'https://www.instagram.com/islam_hamdy412',
   experience: '3+',
   projects: '20+',
-  technologies: '15+',
+  technologies: '17+',
   clients: '10+'
 };
