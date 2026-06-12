@@ -13,6 +13,18 @@
   }
 }
 
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -25,26 +37,19 @@
   @apply bg-gradient-to-b from-purple-500 to-cyan-500 rounded-full;
 }
 
-/* RTL Support */
-[dir="rtl"] {
-  direction: rtl;
-}
-
-[dir="ltr"] {
-  direction: ltr;
-}
-
-/* Custom animations */
+/* Animations */
 @keyframes gradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .animate-gradient {
   animation: gradient 3s ease infinite;
   background-size: 200%;
+}
+
+/* Better text rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

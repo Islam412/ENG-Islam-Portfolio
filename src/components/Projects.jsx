@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Github, ExternalLink, Code2 } from 'lucide-react';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projectsData } from '../data/portfolioData';
 
 const Projects = () => {
@@ -30,7 +30,6 @@ const Projects = () => {
           <p className="text-gray-400 text-lg">{t('projects.subtitle')}</p>
         </motion.div>
 
-        {/* Filter Buttons */}
         <div className="flex justify-center gap-4 mb-12">
           {['all', 'featured'].map((category) => (
             <button
@@ -92,7 +91,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                   >
-                    <ExternalLink className="w-4 h-4" /> {t('projects.viewLive')}
+                    <FaExternalLinkAlt className="w-4 h-4" /> {t('projects.viewLive')}
                   </a>
                   <a
                     href={project.githubLink}
@@ -100,7 +99,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                   >
-                    <Github className="w-4 h-4" /> {t('projects.viewCode')}
+                    <FaGithub className="w-4 h-4" /> {t('projects.viewCode')}
                   </a>
                 </div>
               </div>

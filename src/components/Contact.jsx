@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Send, Github, Linkedin, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const Contact = () => {
@@ -16,15 +16,14 @@ const Contact = () => {
   });
 
   const socialLinks = [
-    { icon: Github, href: personalInfo.github, color: 'hover:text-gray-400' },
-    { icon: Linkedin, href: personalInfo.linkedin, color: 'hover:text-blue-500' },
-    { icon: Facebook, href: personalInfo.facebook, color: 'hover:text-blue-600' },
-    { icon: Instagram, href: personalInfo.instagram, color: 'hover:text-pink-500' },
+    { icon: FaGithub, href: personalInfo.github, color: 'hover:text-gray-400' },
+    { icon: FaLinkedin, href: personalInfo.linkedin, color: 'hover:text-blue-500' },
+    { icon: FaFacebook, href: personalInfo.facebook, color: 'hover:text-blue-600' },
+    { icon: FaInstagram, href: personalInfo.instagram, color: 'hover:text-pink-500' },
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add email sending functionality
     window.location.href = `mailto:${personalInfo.email}?subject=Message from ${formData.name}&body=${formData.message}`;
   };
 
@@ -44,7 +43,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -88,12 +86,11 @@ const Contact = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Send className="w-4 h-4" /> {t('contact.send')}
+                <FaPaperPlane className="w-4 h-4" /> {t('contact.send')}
               </motion.button>
             </form>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -104,15 +101,15 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-white mb-6">{t('contact.or')}</h3>
               <div className="space-y-4">
                 <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-4 text-gray-400 hover:text-purple-500 transition-colors">
-                  <Mail className="w-5 h-5" />
+                  <FaEnvelope className="w-5 h-5" />
                   <span>{personalInfo.email}</span>
                 </a>
                 <a href={`tel:${personalInfo.phone}`} className="flex items-center gap-4 text-gray-400 hover:text-purple-500 transition-colors">
-                  <Phone className="w-5 h-5" />
+                  <FaPhone className="w-5 h-5" />
                   <span>{personalInfo.phone}</span>
                 </a>
                 <div className="flex items-center gap-4 text-gray-400">
-                  <MapPin className="w-5 h-5" />
+                  <FaMapMarkerAlt className="w-5 h-5" />
                   <span>{personalInfo.location}</span>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Globe } from 'lucide-react';
+import { FaGlobe } from 'react-icons/fa';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -20,7 +20,7 @@ const LanguageSwitcher = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      <Globe className="w-4 h-4 text-purple-500" />
+      <FaGlobe className="w-4 h-4 text-purple-500" />
       <span className="text-sm font-medium text-white">
         {i18n.language === 'en' ? 'AR' : 'EN'}
       </span>

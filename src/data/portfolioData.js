@@ -1,7 +1,7 @@
 import {
   SiHtml5, SiCss3, SiJavascript, SiPython, SiReact, SiDjango,
   SiPostman, SiDocker, SiCelery, SiRedis, SiMysql, SiMongodb,
-  SiGit, SiGithub, SiTailwindcss, SiBootstrap, SiVite
+  SiGit, SiGithub, SiTailwindcss, SiBootstrap
 } from 'react-icons/si';
 
 export const skillsData = {

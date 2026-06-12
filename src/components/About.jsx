@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code2, Database, Globe, Smartphone, Briefcase, Users, Award, Coffee } from 'lucide-react';
+import { FaCode, FaDatabase, FaGlobe, FaBriefcase, FaUsers, FaAward, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const About = () => {
@@ -11,10 +11,10 @@ const About = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const stats = [
-    { icon: Briefcase, value: personalInfo.experience, label: t('about.experience') },
-    { icon: Code2, value: personalInfo.projects, label: t('about.projects') },
-    { icon: Award, value: personalInfo.technologies, label: t('about.technologies') },
-    { icon: Users, value: personalInfo.clients, label: t('about.clients') },
+    { icon: FaBriefcase, value: personalInfo.experience, label: t('about.experience') },
+    { icon: FaCode, value: personalInfo.projects, label: t('about.projects') },
+    { icon: FaAward, value: personalInfo.technologies, label: t('about.technologies') },
+    { icon: FaUsers, value: personalInfo.clients, label: t('about.clients') },
   ];
 
   const images = [
@@ -39,7 +39,6 @@ const About = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Images Grid */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -65,7 +64,6 @@ const About = () => {
             ))}
           </motion.div>
 
-          {/* About Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -95,15 +93,15 @@ const About = () => {
 
             <div className="space-y-3 pt-4">
               <div className="flex items-center gap-3 text-gray-300">
-                <Mail className="w-5 h-5 text-purple-500" />
+                <FaEnvelope className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.email}</span>
               </div>
               <div className="flex items-center gap-3 text-gray-300">
-                <Phone className="w-5 h-5 text-purple-500" />
+                <FaPhone className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.phone}</span>
               </div>
               <div className="flex items-center gap-3 text-gray-300">
-                <Globe className="w-5 h-5 text-purple-500" />
+                <FaGlobe className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.location}</span>
               </div>
             </div>

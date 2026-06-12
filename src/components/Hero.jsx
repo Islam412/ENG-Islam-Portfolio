@@ -1,22 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Facebook, Instagram, Mail, Phone } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaArrowDown } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const Hero = () => {
   const { t } = useTranslation();
 
   const socialLinks = [
-    { icon: Github, href: personalInfo.github, color: 'hover:text-gray-400' },
-    { icon: Linkedin, href: personalInfo.linkedin, color: 'hover:text-blue-500' },
-    { icon: Facebook, href: personalInfo.facebook, color: 'hover:text-blue-600' },
-    { icon: Instagram, href: personalInfo.instagram, color: 'hover:text-pink-500' },
+    { icon: FaGithub, href: personalInfo.github, color: 'hover:text-gray-400' },
+    { icon: FaLinkedin, href: personalInfo.linkedin, color: 'hover:text-blue-500' },
+    { icon: FaFacebook, href: personalInfo.facebook, color: 'hover:text-blue-600' },
+    { icon: FaInstagram, href: personalInfo.instagram, color: 'hover:text-pink-500' },
   ];
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Animated Background */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000" />
@@ -67,7 +66,6 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +89,6 @@ const Hero = () => {
             ))}
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -99,21 +96,20 @@ const Hero = () => {
             className="flex flex-wrap justify-center gap-6 text-gray-400"
           >
             <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-2 hover:text-purple-500 transition-colors">
-              <Mail className="w-4 h-4" /> {personalInfo.email}
+              <FaEnvelope className="w-4 h-4" /> {personalInfo.email}
             </a>
             <a href={`tel:${personalInfo.phone}`} className="flex items-center gap-2 hover:text-purple-500 transition-colors">
-              <Phone className="w-4 h-4" /> {personalInfo.phone}
+              <FaPhone className="w-4 h-4" /> {personalInfo.phone}
             </a>
           </motion.div>
 
-          {/* Scroll Indicator */}
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            <ArrowDown className="w-6 h-6 text-gray-400" />
+            <FaArrowDown className="w-6 h-6 text-gray-400" />
           </motion.div>
         </div>
       </div>

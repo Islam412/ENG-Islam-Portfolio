@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Code2 } from 'lucide-react';
+import { FaCode } from 'react-icons/fa';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <Code2 className="w-6 h-6 text-purple-500" />
+            <FaCode className="w-6 h-6 text-purple-500" />
             <span className="text-gray-400">
               © {currentYear} Islam Hamdy. {t('footer.rights')}
             </span>

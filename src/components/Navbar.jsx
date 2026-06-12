@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { FaCode, FaBars, FaTimes } from 'react-icons/fa';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
@@ -60,20 +60,18 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <motion.a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
             className="flex items-center space-x-2 cursor-pointer group"
             whileHover={{ scale: 1.05 }}
           >
-            <Code2 className="w-8 h-8 text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text" />
+            <FaCode className="w-8 h-8 text-purple-500" />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent">
               Islam Hamdy
             </span>
           </motion.a>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.a
@@ -102,20 +100,18 @@ const Navbar = () => {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="flex items-center space-x-4 md:hidden">
             <LanguageSwitcher />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-300 hover:text-white focus:outline-none"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
