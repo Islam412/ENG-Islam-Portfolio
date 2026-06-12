@@ -36,6 +36,7 @@ const Projects = () => {
 
   // أيقونات التصنيفات
   const categoryIcons = {
+    all: <FaLayerGroup className="w-4 h-4" />,
     frontend: <FaCode className="w-4 h-4" />,
     backend: <FaDatabase className="w-4 h-4" />,
     fullstack: <FaLayerGroup className="w-4 h-4" />,
@@ -43,6 +44,7 @@ const Projects = () => {
 
   // ألوان التصنيفات
   const categoryColors = {
+    all: 'from-purple-500 to-cyan-500',
     frontend: 'from-green-500 to-emerald-500',
     backend: 'from-blue-500 to-cyan-500',
     fullstack: 'from-purple-500 to-pink-500',
@@ -102,97 +104,140 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Category Filter Buttons - Tabs Style */}
+        {/* Category Filter Buttons - Modern & Improved */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center mb-10"
+          className="flex justify-center"
         >
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-1.5 border border-gray-800">
+          <div className="bg-gray-900/40 backdrop-blur-md rounded-2xl p-1.5 border border-gray-800 shadow-xl">
             <div className="flex flex-wrap justify-center gap-1.5">
+              {/* All Button */}
               <button
                 onClick={() => { setCategory('all'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
                   category === 'all' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'all' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <FaLayerGroup className="w-4 h-4" />
-                  All ({projectStats.total})
+                  <span className="p-1 rounded-lg bg-white/10">
+                    <FaLayerGroup className="w-4 h-4" />
+                  </span>
+                  <span className="font-semibold">All</span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                    category === 'all' 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-gray-800 text-gray-400 group-hover:bg-gray-700'
+                  }`}>
+                    {projectStats.total}
+                  </span>
                 </span>
               </button>
+
+              {/* Frontend Button */}
               <button
                 onClick={() => { setCategory('frontend'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
                   category === 'frontend' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'frontend' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <FaCode className="w-4 h-4" />
-                  Frontend ({projectStats.frontend})
+                  <span className="p-1 rounded-lg bg-white/10">
+                    <FaCode className="w-4 h-4" />
+                  </span>
+                  <span className="font-semibold">Frontend</span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                    category === 'frontend' 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-gray-800 text-gray-400'
+                  }`}>
+                    {projectStats.frontend}
+                  </span>
                 </span>
               </button>
+
+              {/* Backend Button */}
               <button
                 onClick={() => { setCategory('backend'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
                   category === 'backend' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'backend' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <FaDatabase className="w-4 h-4" />
-                  Backend ({projectStats.backend})
+                  <span className="p-1 rounded-lg bg-white/10">
+                    <FaDatabase className="w-4 h-4" />
+                  </span>
+                  <span className="font-semibold">Backend</span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                    category === 'backend' 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-gray-800 text-gray-400'
+                  }`}>
+                    {projectStats.backend}
+                  </span>
                 </span>
               </button>
+
+              {/* Full Stack Button */}
               <button
                 onClick={() => { setCategory('fullstack'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
                   category === 'fullstack' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'fullstack' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <FaLayerGroup className="w-4 h-4" />
-                  Full Stack ({projectStats.fullstack})
+                  <span className="p-1 rounded-lg bg-white/10">
+                    <FaLayerGroup className="w-4 h-4" />
+                  </span>
+                  <span className="font-semibold">Full Stack</span>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                    category === 'fullstack' 
+                      ? 'bg-white/20 text-white' 
+                      : 'bg-gray-800 text-gray-400'
+                  }`}>
+                    {projectStats.fullstack}
+                  </span>
                 </span>
               </button>
             </div>
           </div>
         </motion.div>
 
-        {/* Technology Filter - Chips */}
+        {/* Technology Filter - Clean Chips */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="flex justify-center gap-2 mb-12 flex-wrap"
+          className="flex justify-center gap-2 mt-8 mb-12 flex-wrap"
         >
           {technologies.map(tech => (
             <button
@@ -238,7 +283,8 @@ const Projects = () => {
                   project.category === 'backend' ? 'from-blue-500 to-cyan-500' :
                   'from-purple-500 to-pink-500'
                 }`}>
-                  {categoryNames[project.category]}
+                  {project.category === 'frontend' ? 'Frontend' : 
+                   project.category === 'backend' ? 'Backend' : 'Full Stack'}
                 </div>
 
                 {/* Featured Badge */}
@@ -296,7 +342,7 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Action Buttons - Improved Live Demo & Source Code */}
+                {/* Action Buttons */}
                 <div className="flex gap-2 pt-2 border-t border-gray-800">
                   <a
                     href={project.liveLink}
@@ -329,7 +375,7 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Show More & View All Buttons - جنب بعض */}
+        {/* Show More & View All Buttons */}
         {hasMore && filteredProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -338,7 +384,6 @@ const Projects = () => {
             className="text-center mt-12"
           >
             <div className="flex flex-wrap justify-center gap-4">
-              {/* Show More Button */}
               <motion.button
                 onClick={loadMore}
                 whileHover={{ scale: 1.03 }}
@@ -353,7 +398,6 @@ const Projects = () => {
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
-              {/* View All Button */}
               <motion.button
                 onClick={showAll}
                 whileHover={{ scale: 1.03 }}
@@ -369,7 +413,7 @@ const Projects = () => {
           </motion.div>
         )}
 
-        {/* GitHub Link - Improved Card Style */}
+        {/* GitHub Link */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
