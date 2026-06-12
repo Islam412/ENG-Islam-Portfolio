@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar, FaCode, FaDatabase, FaLayerGroup, FaEye, FaRocket } from 'react-icons/fa';
+import { 
+  FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar, FaCode, 
+  FaDatabase, FaLayerGroup, FaEye, FaRocket, FaFilter 
+} from 'react-icons/fa';
 import { projectsData, projectStats } from '../data/portfolioData';
 
 const Projects = () => {
@@ -12,6 +15,7 @@ const Projects = () => {
   const [category, setCategory] = useState('all');
   const [techFilter, setTechFilter] = useState('all');
   const [visibleCount, setVisibleCount] = useState(6);
+  const [showTechFilter, setShowTechFilter] = useState(false);
 
   // تقنيات متاحة للفلترة
   const technologies = ['all', 'React', 'Django', 'Python', 'SQL', 'Tailwind CSS'];
@@ -34,22 +38,6 @@ const Projects = () => {
     setVisibleCount(filteredProjects.length);
   };
 
-  // أيقونات التصنيفات
-  const categoryIcons = {
-    all: <FaLayerGroup className="w-4 h-4" />,
-    frontend: <FaCode className="w-4 h-4" />,
-    backend: <FaDatabase className="w-4 h-4" />,
-    fullstack: <FaLayerGroup className="w-4 h-4" />,
-  };
-
-  // ألوان التصنيفات
-  const categoryColors = {
-    all: 'from-purple-500 to-cyan-500',
-    frontend: 'from-green-500 to-emerald-500',
-    backend: 'from-blue-500 to-cyan-500',
-    fullstack: 'from-purple-500 to-pink-500',
-  };
-
   // أسماء التصنيفات للعرض
   const categoryNames = {
     frontend: 'Frontend',
@@ -58,7 +46,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-dark-card to-dark-bg relative overflow-hidden" ref={ref}>
+    <section id="projects" className="py-16 md:py-20 bg-gradient-to-b from-dark-card to-dark-bg relative overflow-hidden" ref={ref}>
       {/* Background Decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-10 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" />
@@ -66,163 +54,164 @@ const Projects = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="text-purple-500 text-sm uppercase tracking-wider font-semibold">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ repeat: Infinity, duration: 3 }}
+            className="inline-block mb-2 md:mb-3"
+          >
+            <span className="text-purple-500 text-[10px] md:text-xs uppercase tracking-wider font-semibold bg-purple-500/10 px-3 md:px-4 py-1 rounded-full">
+              Portfolio
+            </span>
+          </motion.div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-2">
             <span className="gradient-text">Featured Projects</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">My Recent Work</p>
+          <p className="text-gray-400 text-xs md:text-sm mt-2">My Recent Work</p>
         </motion.div>
 
-        {/* Project Stats Cards */}
+        {/* Project Stats Cards - Responsive Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 max-w-2xl mx-auto mb-8 md:mb-10"
         >
-          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
-            <div className="text-2xl font-bold text-purple-500">{projectStats.total}</div>
-            <div className="text-xs text-gray-400">Total Projects</div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+            <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
+              <div className="text-xl md:text-2xl font-bold text-purple-500">{projectStats.total}</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500">Total</div>
+            </div>
           </div>
-          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
-            <div className="text-2xl font-bold text-green-500">{projectStats.frontend}</div>
-            <div className="text-xs text-gray-400">Frontend</div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+            <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
+              <div className="text-xl md:text-2xl font-bold text-green-500">{projectStats.frontend}</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500">Frontend</div>
+            </div>
           </div>
-          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
-            <div className="text-2xl font-bold text-blue-500">{projectStats.backend}</div>
-            <div className="text-xs text-gray-400">Backend</div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+            <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
+              <div className="text-xl md:text-2xl font-bold text-blue-500">{projectStats.backend}</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500">Backend</div>
+            </div>
           </div>
-          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
-            <div className="text-2xl font-bold text-purple-500">{projectStats.fullstack}</div>
-            <div className="text-xs text-gray-400">Full Stack</div>
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+            <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
+              <div className="text-xl md:text-2xl font-bold text-purple-500">{projectStats.fullstack}</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500">Full Stack</div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Category Filter Buttons - Modern & Improved */}
+        {/* Category Filter Buttons - Scrollable on Mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center"
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex justify-center mb-6"
         >
-          <div className="bg-gray-900/40 backdrop-blur-md rounded-2xl p-1.5 border border-gray-800 shadow-xl">
-            <div className="flex flex-wrap justify-center gap-1.5">
-              {/* All Button */}
+          <div className="bg-gray-900/40 backdrop-blur-md rounded-xl md:rounded-2xl p-1 border border-gray-800 shadow-xl overflow-x-auto max-w-full">
+            <div className="flex flex-nowrap md:flex-wrap justify-center gap-1 min-w-max md:min-w-0">
               <button
                 onClick={() => { setCategory('all'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
+                className={`relative px-3 md:px-5 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1 md:gap-2 overflow-hidden whitespace-nowrap ${
                   category === 'all' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'all' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl shadow-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg md:rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="p-1 rounded-lg bg-white/10">
-                    <FaLayerGroup className="w-4 h-4" />
-                  </span>
-                  <span className="font-semibold">All</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                    category === 'all' 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-gray-800 text-gray-400 group-hover:bg-gray-700'
+                <span className="relative z-10 flex items-center gap-1 md:gap-2">
+                  <FaLayerGroup className="w-3 h-3 md:w-4 md:h-4" />
+                  <span className="font-semibold hidden sm:inline">All</span>
+                  <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
+                    category === 'all' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                   }`}>
                     {projectStats.total}
                   </span>
                 </span>
               </button>
 
-              {/* Frontend Button */}
               <button
                 onClick={() => { setCategory('frontend'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
+                className={`relative px-3 md:px-5 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1 md:gap-2 overflow-hidden whitespace-nowrap ${
                   category === 'frontend' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'frontend' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl shadow-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg md:rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="p-1 rounded-lg bg-white/10">
-                    <FaCode className="w-4 h-4" />
-                  </span>
-                  <span className="font-semibold">Frontend</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                    category === 'frontend' 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-gray-800 text-gray-400'
+                <span className="relative z-10 flex items-center gap-1 md:gap-2">
+                  <FaCode className="w-3 h-3 md:w-4 md:h-4" />
+                  <span className="font-semibold hidden sm:inline">Frontend</span>
+                  <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
+                    category === 'frontend' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                   }`}>
                     {projectStats.frontend}
                   </span>
                 </span>
               </button>
 
-              {/* Backend Button */}
               <button
                 onClick={() => { setCategory('backend'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
+                className={`relative px-3 md:px-5 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1 md:gap-2 overflow-hidden whitespace-nowrap ${
                   category === 'backend' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'backend' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl shadow-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg md:rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="p-1 rounded-lg bg-white/10">
-                    <FaDatabase className="w-4 h-4" />
-                  </span>
-                  <span className="font-semibold">Backend</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                    category === 'backend' 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-gray-800 text-gray-400'
+                <span className="relative z-10 flex items-center gap-1 md:gap-2">
+                  <FaDatabase className="w-3 h-3 md:w-4 md:h-4" />
+                  <span className="font-semibold hidden sm:inline">Backend</span>
+                  <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
+                    category === 'backend' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                   }`}>
                     {projectStats.backend}
                   </span>
                 </span>
               </button>
 
-              {/* Full Stack Button */}
               <button
                 onClick={() => { setCategory('fullstack'); setTechFilter('all'); setVisibleCount(6); }}
-                className={`relative px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2.5 overflow-hidden ${
+                className={`relative px-3 md:px-5 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium transition-all duration-300 flex items-center gap-1 md:gap-2 overflow-hidden whitespace-nowrap ${
                   category === 'fullstack' ? 'text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {category === 'fullstack' && (
                   <motion.div
                     layoutId="activeCategory"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl shadow-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg md:rounded-xl shadow-lg"
                     transition={{ type: 'spring', duration: 0.5 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="p-1 rounded-lg bg-white/10">
-                    <FaLayerGroup className="w-4 h-4" />
-                  </span>
-                  <span className="font-semibold">Full Stack</span>
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                    category === 'fullstack' 
-                      ? 'bg-white/20 text-white' 
-                      : 'bg-gray-800 text-gray-400'
+                <span className="relative z-10 flex items-center gap-1 md:gap-2">
+                  <FaLayerGroup className="w-3 h-3 md:w-4 md:h-4" />
+                  <span className="font-semibold hidden sm:inline">Full Stack</span>
+                  <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
+                    category === 'fullstack' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                   }`}>
                     {projectStats.fullstack}
                   </span>
@@ -232,41 +221,59 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Technology Filter - Clean Chips */}
+        {/* Technology Filter - Dropdown for Mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="flex justify-center gap-2 mt-8 mb-12 flex-wrap"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center mb-8 md:mb-10"
         >
-          {technologies.map(tech => (
+          <div className="relative">
             <button
-              key={tech}
-              onClick={() => { setTechFilter(tech); setVisibleCount(6); }}
-              className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 ${
-                techFilter === tech 
-                  ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/25' 
-                  : 'bg-gray-800/50 text-gray-400 hover:text-white border border-gray-700'
-              }`}
+              onClick={() => setShowTechFilter(!showTechFilter)}
+              className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm bg-gray-800/50 text-gray-300 hover:text-white border border-gray-700 hover:border-purple-500 transition-all duration-300"
             >
-              {tech === 'all' ? 'All Technologies' : tech}
+              <FaFilter className="w-3 h-3 md:w-3.5 md:h-3.5" />
+              <span>{techFilter === 'all' ? 'Filter by Tech' : techFilter}</span>
+              <svg className={`w-2.5 h-2.5 md:w-3 md:h-3 transition-transform duration-300 ${showTechFilter ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-          ))}
+            {showTechFilter && (
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900 border border-gray-700 rounded-lg md:rounded-xl overflow-hidden shadow-xl z-20 min-w-[140px] md:min-w-[160px]">
+                <div className="p-1">
+                  {technologies.map(tech => (
+                    <button
+                      key={tech}
+                      onClick={() => { setTechFilter(tech); setVisibleCount(6); setShowTechFilter(false); }}
+                      className={`w-full text-left px-2 md:px-3 py-1.5 md:py-2 text-[10px] md:text-xs rounded-md transition-colors ${
+                        techFilter === tech
+                          ? 'bg-purple-500/20 text-purple-400'
+                          : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                      }`}
+                    >
+                      {tech === 'all' ? 'All Technologies' : tech}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Projects Grid - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {visibleProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               whileHover={{ y: -5 }}
-              className="group bg-dark-bg rounded-xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
+              className="group bg-dark-bg rounded-lg md:rounded-xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
             >
               {/* Image Section */}
-              <div className="relative h-48 overflow-hidden bg-gray-900">
+              <div className="relative h-36 sm:h-40 md:h-44 overflow-hidden bg-gray-900">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -278,89 +285,88 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Category Badge */}
-                <div className={`absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-medium text-white shadow-lg bg-gradient-to-r ${
+                <div className={`absolute top-2 left-2 md:top-3 md:left-3 px-1.5 md:px-2 py-0.5 rounded-full text-[8px] md:text-[10px] font-medium text-white shadow-lg bg-gradient-to-r ${
                   project.category === 'frontend' ? 'from-green-500 to-emerald-500' :
                   project.category === 'backend' ? 'from-blue-500 to-cyan-500' :
                   'from-purple-500 to-pink-500'
                 }`}>
-                  {project.category === 'frontend' ? 'Frontend' : 
-                   project.category === 'backend' ? 'Backend' : 'Full Stack'}
+                  {categoryNames[project.category]}
                 </div>
 
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-[9px] font-semibold flex items-center gap-1">
-                    <FaStar className="w-2.5 h-2.5" />
-                    Featured
+                  <div className="absolute top-2 right-2 md:top-3 md:right-3 px-1.5 md:px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-[7px] md:text-[9px] font-semibold flex items-center gap-0.5 md:gap-1">
+                    <FaStar className="w-2 h-2 md:w-2.5 md:h-2.5" />
+                    <span className="hidden xs:inline">Featured</span>
                   </div>
                 )}
 
                 {/* Hover Overlay Buttons */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 md:gap-3">
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-purple-500 flex items-center justify-center text-white hover:bg-purple-600 hover:scale-110 transition-all duration-300"
+                    className="w-7 h-7 md:w-9 md:h-9 rounded-lg bg-purple-500 flex items-center justify-center text-white hover:bg-purple-600 hover:scale-110 transition-all duration-300"
                   >
-                    <FaExternalLinkAlt className="w-4 h-4" />
+                    <FaExternalLinkAlt className="w-3 h-3 md:w-3.5 md:h-3.5" />
                   </a>
                   <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-gray-700 flex items-center justify-center text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300"
+                    className="w-7 h-7 md:w-9 md:h-9 rounded-lg bg-gray-700 flex items-center justify-center text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300"
                   >
-                    <FaGithub className="w-4 h-4" />
+                    <FaGithub className="w-3 h-3 md:w-3.5 md:h-3.5" />
                   </a>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+              <div className="p-3 md:p-4">
+                <h3 className="text-sm md:text-base font-bold text-white mb-1 group-hover:text-purple-400 transition-colors line-clamp-1">
                   {i18n.language === 'en' ? project.title : project.titleAr}
                 </h3>
-                <p className="text-gray-400 text-xs leading-relaxed mb-3 line-clamp-2">
-                  {i18n.language === 'en' ? project.description.substring(0, 80) : project.descriptionAr.substring(0, 80)}...
+                <p className="text-gray-400 text-[10px] md:text-[11px] leading-relaxed mb-2 md:mb-3 line-clamp-2">
+                  {i18n.language === 'en' ? project.description.substring(0, 60) : project.descriptionAr.substring(0, 60)}...
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.technologies.slice(0, 4).map((tech, i) => (
+                <div className="flex flex-wrap gap-1 md:gap-1.5 mb-2 md:mb-3">
+                  {project.technologies.slice(0, 3).map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 text-[9px] rounded bg-purple-500/10 text-purple-400"
+                      className="px-1 md:px-1.5 py-0.5 text-[7px] md:text-[8px] rounded bg-purple-500/10 text-purple-400"
                     >
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 4 && (
-                    <span className="px-2 py-0.5 text-[9px] rounded bg-gray-800 text-gray-500">
-                      +{project.technologies.length - 4}
+                  {project.technologies.length > 3 && (
+                    <span className="px-1 md:px-1.5 py-0.5 text-[7px] md:text-[8px] rounded bg-gray-800 text-gray-500">
+                      +{project.technologies.length - 3}
                     </span>
                   )}
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2 pt-2 border-t border-gray-800">
+                <div className="flex gap-1.5 md:gap-2 pt-1.5 md:pt-2 border-t border-gray-800">
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group/btn"
+                    className="flex-1 flex items-center justify-center gap-1 py-1 md:py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-[9px] md:text-[10px] font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
                   >
-                    <FaRocket className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
-                    Live Demo
+                    <FaRocket className="w-2 h-2 md:w-2.5 md:h-2.5" />
+                    Demo
                   </a>
                   <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-gray-600 text-gray-300 text-xs font-medium hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-400 transition-all duration-300 group/btn"
+                    className="flex-1 flex items-center justify-center gap-1 py-1 md:py-1.5 rounded-lg border border-gray-600 text-gray-300 text-[9px] md:text-[10px] font-medium hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-400 transition-all duration-300"
                   >
-                    <FaGithub className="w-3 h-3 group-hover/btn:rotate-3 transition-transform" />
-                    Source Code
+                    <FaGithub className="w-2 h-2 md:w-2.5 md:h-2.5" />
+                    Code
                   </a>
                 </div>
               </div>
@@ -370,8 +376,8 @@ const Projects = () => {
 
         {/* No Projects Message */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-400">No projects found in this category.</p>
+          <div className="text-center py-8 md:py-12">
+            <p className="text-gray-400 text-xs md:text-sm">No projects found in this category.</p>
           </div>
         )}
 
@@ -380,34 +386,34 @@ const Projects = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center mt-12"
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="text-center mt-8 md:mt-10"
           >
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
               <motion.button
                 onClick={loadMore}
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-medium flex items-center gap-2 shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
+                className="group px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2 shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
               >
-                <FaEye className="w-4 h-4" />
+                <FaEye className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 <span>Show More</span>
-                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">
+                <span className="text-[9px] md:text-xs bg-white/20 px-1 md:px-1.5 py-0.5 rounded-full">
                   {filteredProjects.length - visibleCount}
                 </span>
-                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </motion.button>
 
               <motion.button
                 onClick={showAll}
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group px-6 py-3 rounded-xl border-2 border-purple-500 text-purple-400 font-medium hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+                className="group px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl border border-purple-500 text-purple-400 text-xs md:text-sm font-medium hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center gap-1.5 md:gap-2"
               >
-                <FaLayerGroup className="w-4 h-4" />
+                <FaLayerGroup className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 <span>View All</span>
-                <span className="text-xs">({filteredProjects.length})</span>
-                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="text-[9px] md:text-xs">({filteredProjects.length})</span>
+                <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </motion.button>
             </div>
           </motion.div>
@@ -417,23 +423,23 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-10"
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="text-center mt-6 md:mt-8"
         >
           <a
             href="https://github.com/Islam412"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-4 px-6 py-3 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300"
+            className="group inline-flex items-center gap-2 md:gap-3 px-3 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300"
           >
-            <div className="w-10 h-10 rounded-xl bg-gray-700 group-hover:bg-purple-500/20 flex items-center justify-center transition-all duration-300">
-              <FaGithub className="w-5 h-5 text-gray-400 group-hover:text-purple-400" />
+            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-gray-700 group-hover:bg-purple-500/20 flex items-center justify-center transition-all duration-300">
+              <FaGithub className="w-3 h-3 md:w-4 md:h-4 text-gray-400 group-hover:text-purple-400" />
             </div>
             <div className="text-left">
-              <div className="text-xs text-gray-500 group-hover:text-purple-400 transition-colors">GitHub Repository</div>
-              <div className="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">View all projects on GitHub</div>
+              <div className="text-[8px] md:text-[10px] text-gray-500 group-hover:text-purple-400 transition-colors">GitHub</div>
+              <div className="text-[10px] md:text-xs text-white font-medium group-hover:text-purple-400 transition-colors">View all projects</div>
             </div>
-            <FaArrowRight className="w-4 h-4 text-gray-400 group-hover:text-purple-400 group-hover:translate-x-1 transition-all duration-300" />
+            <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-400 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all duration-300" />
           </a>
         </motion.div>
       </div>

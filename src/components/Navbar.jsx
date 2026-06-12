@@ -67,8 +67,8 @@ const Navbar = () => {
             className="flex items-center gap-2 cursor-pointer group shrink-0"
             whileHover={{ scale: 1.05 }}
           >
-            <FaCode className="w-7 h-7 text-purple-500" />
-            <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
+            <FaCode className="w-6 h-6 md:w-7 md:h-7 text-purple-500" />
+            <span className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
               Islam Hamdy
             </span>
           </motion.a>
@@ -102,27 +102,36 @@ const Navbar = () => {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* Mobile Menu Button - Improved */}
+          <div className="flex items-center gap-2 md:hidden">
             <LanguageSwitcher />
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none p-2"
+              className="relative w-10 h-10 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 flex items-center justify-center text-gray-300 hover:text-white focus:outline-none transition-all duration-300 border border-purple-500/30 hover:border-purple-500/60"
+              whileTap={{ scale: 0.95 }}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
-              {isOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
-            </button>
+              <motion.div
+                initial={false}
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Improved Animation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-dark-bg/95 backdrop-blur-lg border-t border-gray-800"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-dark-bg/95 backdrop-blur-lg border-t border-gray-800 overflow-hidden"
           >
             <div className="container mx-auto px-4 py-4">
               {navItems.map((item, index) => (
@@ -130,10 +139,11 @@ const Navbar = () => {
                   key={item.name}
                   href={`#${item.href}`}
                   onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                  className="block py-3 text-gray-300 hover:text-purple-500 transition-colors"
+                  className="block py-3 px-2 text-gray-300 hover:text-purple-500 transition-colors rounded-lg hover:bg-purple-500/10"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ delay: index * 0.05, duration: 0.2 }}
                 >
                   {item.name}
                 </motion.a>
