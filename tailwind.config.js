@@ -48,6 +48,18 @@ export default {
         'flip': 'flip 0.8s ease-in-out',
         'shake': 'shake 0.5s ease-in-out',
         'wiggle': 'wiggle 0.3s ease-in-out',
+        
+        // Cursor & Touch animations
+        'ripple': 'ripple 0.6s ease-out forwards',
+        'touch-ripple': 'touchRipple 0.6s ease-out forwards',
+        'touch-glow': 'touchGlow 0.3s ease-out forwards',
+        'click-glow': 'clickGlow 0.5s ease-out forwards',
+        'shine': 'shine 3s infinite',
+        'floating': 'floating 3s ease-in-out infinite',
+        'pulse-border': 'pulseBorder 2s ease-in-out infinite',
+        'gradient-move': 'gradientMove 3s linear infinite',
+        'text-shine': 'textShine 3s linear infinite',
+        'magnetic': 'magnetic 0.2s ease',
       },
       keyframes: {
         // Existing keyframes
@@ -130,26 +142,82 @@ export default {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
         },
+        
+        // Cursor & Touch keyframes
+        ripple: {
+          '0%': { transform: 'translate(-50%, -50%) scale(0)', opacity: '0.6' },
+          '100%': { transform: 'translate(-50%, -50%) scale(4)', opacity: '0' },
+        },
+        touchRipple: {
+          '0%': { transform: 'scale(0.5)', opacity: '0.8' },
+          '100%': { transform: 'scale(2)', opacity: '0' },
+        },
+        touchGlow: {
+          '0%': { transform: 'scale(0.8)', opacity: '0.6' },
+          '100%': { transform: 'scale(1.5)', opacity: '0' },
+        },
+        clickGlow: {
+          '0%': { transform: 'scale(0.5)', opacity: '0.6' },
+          '100%': { transform: 'scale(1.8)', opacity: '0' },
+        },
+        shine: {
+          '0%': { transform: 'translateX(-100%) rotate(25deg)' },
+          '20%, 100%': { transform: 'translateX(100%) rotate(25deg)' },
+        },
+        floating: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        pulseBorder: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(139, 92, 246, 0.4)' },
+          '50%': { boxShadow: '0 0 0 10px rgba(139, 92, 246, 0)' },
+        },
+        gradientMove: {
+          '0%': { backgroundPosition: '0%' },
+          '100%': { backgroundPosition: '300%' },
+        },
+        textShine: {
+          '0%': { backgroundPosition: '0%' },
+          '100%': { backgroundPosition: '300%' },
+        },
+        magnetic: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.05)' },
+        },
       },
       backgroundSize: {
         '200%': '200%',
+        '300%': '300%',
       },
       boxShadow: {
         'glow-purple': '0 0 30px rgba(139, 92, 246, 0.3)',
         'glow-cyan': '0 0 30px rgba(6, 182, 212, 0.3)',
         'glow-pink': '0 0 30px rgba(236, 72, 153, 0.3)',
         'inner-glow': 'inset 0 0 20px rgba(139, 92, 246, 0.1)',
+        'cursor-glow': '0 0 20px rgba(139, 92, 246, 0.5)',
       },
       backdropBlur: {
         xs: '2px',
+        sm: '4px',
+        md: '8px',
+        lg: '12px',
+        xl: '16px',
       },
       transitionTimingFunction: {
         'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'elastic': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
       transitionDuration: {
         '2000': '2000ms',
         '3000': '3000ms',
+        '400': '400ms',
+        '600': '600ms',
+        '800': '800ms',
+      },
+      cursor: {
+        'custom': 'url(/cursor.png), auto',
+        'pointer-glow': 'url(/pointer-glow.png), pointer',
       },
     },
   },
