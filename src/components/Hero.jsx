@@ -231,7 +231,7 @@ const Hero = () => {
                     alt={personalInfo.name}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     onError={(e) => {
-                      e.target.src = 'https://ui-avatars.com/api/?name=Islam+Hamdy&background=8b5cf6&color=fff&size=400&rounded=true&bold=true';
+                      e.target.src = 'profile/islam.jpg';
                     }}
                   />
                 </div>
