@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaCode, FaDatabase, FaGlobe, FaBriefcase, FaUsers, FaAward, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaCode, FaGlobe, FaBriefcase, FaUsers, FaAward, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const About = () => {
@@ -18,9 +18,9 @@ const About = () => {
   ];
 
   const images = [
-    'https://randomuser.me/api/portraits/men/1.jpg',
-    'https://randomuser.me/api/portraits/men/2.jpg',
-    'https://randomuser.me/api/portraits/men/3.jpg',
+    '/images/profile-1.jpg',
+    '/images/profile-2.jpg',
+    '/images/profile-3.jpg',
   ];
 
   return (
@@ -39,6 +39,7 @@ const About = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Images Grid */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -48,7 +49,7 @@ const About = () => {
             {images.map((img, index) => (
               <motion.div
                 key={index}
-                className={`relative overflow-hidden rounded-2xl ${
+                className={`relative overflow-hidden rounded-2xl group ${
                   index === 0 ? 'col-span-2' : ''
                 }`}
                 whileHover={{ scale: 1.02 }}
@@ -57,13 +58,14 @@ const About = () => {
                 <img
                   src={img}
                   alt={`Profile ${index + 1}`}
-                  className="w-full h-48 object-cover rounded-2xl"
+                  className="w-full h-48 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-bg to-transparent opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </motion.div>
 
+          {/* About Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -78,7 +80,7 @@ const About = () => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-dark-bg rounded-xl p-4 text-center"
+                  className="bg-dark-bg rounded-xl p-4 text-center hover:bg-gradient-to-br hover:from-purple-500/10 hover:to-cyan-500/10 transition-all duration-300"
                   whileHover={{ y: -5 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -92,18 +94,27 @@ const About = () => {
             </div>
 
             <div className="space-y-3 pt-4">
-              <div className="flex items-center gap-3 text-gray-300">
+              <motion.div 
+                className="flex items-center gap-3 text-gray-300 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 5 }}
+              >
                 <FaEnvelope className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.email}</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-300">
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-3 text-gray-300 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 5 }}
+              >
                 <FaPhone className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.phone}</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-300">
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-3 text-gray-300 hover:text-purple-500 transition-colors"
+                whileHover={{ x: 5 }}
+              >
                 <FaGlobe className="w-5 h-5 text-purple-500" />
                 <span>{personalInfo.location}</span>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

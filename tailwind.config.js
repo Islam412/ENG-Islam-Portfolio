@@ -23,9 +23,11 @@ export default {
         'gradient': 'gradient 3s ease infinite',
         'float': 'float 3s ease-in-out infinite',
         'spin-slow': 'spin 8s linear infinite',
+        'spin-reverse': 'spin-reverse 8s linear infinite',
         'glow': 'glow 2s ease-in-out infinite',
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
+        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
       },
       keyframes: {
         gradient: {
@@ -47,6 +49,14 @@ export default {
         slideDown: {
           '0%': { transform: 'translateY(-50px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'spin-reverse': {
+          '0%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(0deg)' },
         },
       },
     },
