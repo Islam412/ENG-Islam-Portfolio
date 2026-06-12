@@ -207,37 +207,48 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - 3D Profile Card */}
+          {/* Right Side - Circular Profile Image with 3D Effect */}
           <motion.div 
             className="flex-1 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="relative group perspective-1000">
-              {/* Animated Rings */}
+            <div className="relative group">
+              {/* Animated Outer Rings */}
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-500 animate-spin-slow" />
               <div className="absolute -inset-8 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-full blur-2xl opacity-30 group-hover:opacity-60 transition duration-700 animate-spin-reverse" />
               
-              {/* Profile Card */}
-              <div className="relative w-80 h-80 lg:w-[400px] lg:h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 p-1 transform transition-all duration-500 group-hover:scale-105">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              {/* Decorative Rings */}
+              <div className="absolute -inset-2 rounded-full border-2 border-purple-500/30 animate-spin-slow" />
+              <div className="absolute -inset-6 rounded-full border border-cyan-500/20 animate-spin-reverse" />
+              
+              {/* Profile Circle Image */}
+              <div className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-600 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-full overflow-hidden bg-dark-bg">
                   <img 
                     src="/images/profile-main.jpg" 
                     alt={personalInfo.name}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     onError={(e) => {
-                      e.target.src = 'https://ui-avatars.com/api/?name=Islam+Hamdy&background=8b5cf6&color=fff&size=400&bold=true';
+                      e.target.src = 'https://ui-avatars.com/api/?name=Islam+Hamdy&background=8b5cf6&color=fff&size=400&rounded=true&bold=true';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                
-                {/* Floating Badge */}
-                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-500/50">
-                  <span className="text-sm font-semibold gradient-text">Full Stack Developer</span>
                 </div>
               </div>
+              
+              {/* Floating Badge */}
+              <motion.div 
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900/90 backdrop-blur-sm px-5 py-2 rounded-full border border-purple-500/50 shadow-lg"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+              >
+                <span className="text-sm font-semibold gradient-text">⚡ Full Stack Developer</span>
+              </motion.div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-8 -right-8 w-16 h-16 bg-purple-500/20 rounded-full blur-xl" />
+              <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl" />
             </div>
           </motion.div>
         </div>
