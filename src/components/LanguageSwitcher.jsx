@@ -16,7 +16,7 @@ const LanguageSwitcher = () => {
   return (
     <motion.button
       onClick={toggleLanguage}
-      className="flex items-center space-x-1 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 hover:from-purple-500/30 hover:to-cyan-500/30 transition-all"
+      className="flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 hover:from-purple-500/30 hover:to-cyan-500/30 transition-all"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >

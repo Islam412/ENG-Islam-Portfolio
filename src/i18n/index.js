@@ -13,7 +13,7 @@ const resources = {
         contact: 'Contact'
       },
       hero: {
-        greeting: 'Hi, I\'m',
+        greeting: "Hi, I'm",
         name: 'Islam Hamdy',
         title: 'Full Stack Web Developer',
         description: 'Building modern web applications with cutting-edge technologies. Specialized in React, Django, and creating seamless user experiences.',

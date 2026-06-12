@@ -124,17 +124,20 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-2xl opacity-50 animate-pulse" />
               
               {/* Profile Image */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gradient-to-r from-purple-500 to-cyan-500 shadow-2xl">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-purple-500 shadow-2xl">
                 <img 
                   src="/images/profile-main.jpg" 
                   alt={personalInfo.name}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/400x400?text=Profile';
+                  }}
                 />
               </div>
               
               {/* Decorative rings */}
               <div className="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-spin-slow" />
-              <div className="absolute inset-4 rounded-full border-2 border-cyan-500/20 animate-spin-slow reverse" />
+              <div className="absolute inset-4 rounded-full border-2 border-cyan-500/20 animate-spin-reverse" />
             </div>
           </motion.div>
         </div>
