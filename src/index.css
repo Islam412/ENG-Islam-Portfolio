@@ -13,6 +13,25 @@
   }
 }
 
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.glass-card {
+  background: rgba(17, 17, 17, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
 /* RTL Support */
 [dir="rtl"] {
   direction: rtl;
@@ -26,11 +45,11 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-800;
+  @apply bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -43,45 +62,100 @@
   50% { background-position: 100% 50%; }
 }
 
-.animate-gradient {
-  animation: gradient 3s ease infinite;
-  background-size: 200%;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-/* Better text rendering */
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(139, 92, 246, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); }
 }
 
-
-/* Glow effect for cards */
-.glow-card {
-  transition: all 0.3s ease;
-}
-
-.glow-card:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-  transform: translateY(-5px);
-}
-
-/* Text gradient animation */
-.animated-gradient-text {
-  background: linear-gradient(270deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: textGradient 6s ease infinite;
-}
-
-@keyframes textGradient {
+@keyframes borderFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Smooth reveal on scroll */
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+  background-size: 200%;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899) border-box;
+  border: 2px solid transparent;
+  border-radius: 1rem;
+}
+
+.gradient-border:hover {
+  animation: borderFlow 3s ease infinite;
+  background-size: 200%;
+}
+
+/* Text Styles */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Modern Card */
+.modern-card {
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(10, 10, 10, 0.9));
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modern-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+}
+
+/* Skill Bar */
+.skill-bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  position: absolute;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  transition: width 1s ease;
+}
+
+/* Particle Background */
+.particle-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Smooth Reveal */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -91,31 +165,4 @@
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Custom cursor */
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #8b5cf6;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.1s ease;
-}
-
-/* Loading animation */
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 3px solid #1a1a1a;
-  border-top: 3px solid #8b5cf6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
