@@ -214,3 +214,4 @@ export const personalInfo = {
   technologies: '17+',
   clients: '10+'
 };
+

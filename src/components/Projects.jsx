@@ -2,25 +2,53 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar } from 'react-icons/fa';
-import { projectsData } from '../data/portfolioData';
+import { FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar, FaCode, FaDatabase, FaLayerGroup } from 'react-icons/fa';
+import { projectsData, projectStats } from '../data/portfolioData';
 
 const Projects = () => {
   const { t, i18n } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [filter, setFilter] = useState('all');
+  const [category, setCategory] = useState('all');
+  const [techFilter, setTechFilter] = useState('all');
   const [visibleCount, setVisibleCount] = useState(6);
 
-  const filteredProjects = filter === 'all' 
-    ? projectsData 
-    : projectsData.filter(p => p.featured);
+  // تقنيات متاحة للفلترة
+  const technologies = ['all', 'React', 'Django', 'Python', 'SQL', 'Tailwind CSS'];
+
+  // فلترة المشاريع حسب التصنيف والتقنية
+  const filteredProjects = projectsData.filter(project => {
+    const matchCategory = category === 'all' || project.category === category;
+    const matchTech = techFilter === 'all' || project.technologies.includes(techFilter);
+    return matchCategory && matchTech;
+  });
 
   const visibleProjects = filteredProjects.slice(0, visibleCount);
   const hasMore = visibleCount < filteredProjects.length;
 
   const loadMore = () => {
     setVisibleCount(prev => prev + 3);
+  };
+
+  // أيقونات التصنيفات
+  const categoryIcons = {
+    frontend: <FaCode className="w-4 h-4" />,
+    backend: <FaDatabase className="w-4 h-4" />,
+    fullstack: <FaLayerGroup className="w-4 h-4" />,
+  };
+
+  // ألوان التصنيفات
+  const categoryColors = {
+    frontend: 'from-green-500 to-emerald-500',
+    backend: 'from-blue-500 to-cyan-500',
+    fullstack: 'from-purple-500 to-pink-500',
+  };
+
+  // أسماء التصنيفات للعرض
+  const categoryNames = {
+    frontend: 'Frontend',
+    backend: 'Backend',
+    fullstack: 'Full Stack',
   };
 
   return (
@@ -36,54 +64,115 @@ const Projects = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-purple-500 text-sm uppercase tracking-wider font-semibold">Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent">
-              {t('projects.title')}
-            </span>
+            <span className="gradient-text">{t('projects.title')}</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             {t('projects.subtitle')}
           </p>
         </motion.div>
 
-        {/* Filter Buttons - Modern Design */}
-        <motion.div 
+        {/* Project Stats Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+        >
+          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
+            <div className="text-2xl font-bold text-purple-500">{projectStats.total}</div>
+            <div className="text-xs text-gray-400">Total Projects</div>
+          </div>
+          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
+            <div className="text-2xl font-bold text-green-500">{projectStats.frontend}</div>
+            <div className="text-xs text-gray-400">Frontend</div>
+          </div>
+          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
+            <div className="text-2xl font-bold text-blue-500">{projectStats.backend}</div>
+            <div className="text-xs text-gray-400">Backend</div>
+          </div>
+          <div className="glass-card rounded-xl p-4 text-center hover:scale-105 transition-transform duration-300">
+            <div className="text-2xl font-bold text-purple-500">{projectStats.fullstack}</div>
+            <div className="text-xs text-gray-400">Full Stack</div>
+          </div>
+        </motion.div>
+
+        {/* Category Filter Buttons */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center gap-4 mb-16 flex-wrap"
+          className="flex justify-center gap-3 mb-8 flex-wrap"
         >
           <button
-            onClick={() => {
-              setFilter('all');
-              setVisibleCount(6);
-            }}
-            className={`relative px-7 py-2.5 rounded-full transition-all duration-300 font-medium ${
-              filter === 'all'
-                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg shadow-purple-500/30'
-                : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-700'
+            onClick={() => { setCategory('all'); setTechFilter('all'); setVisibleCount(6); }}
+            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
+              category === 'all' 
+                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg shadow-purple-500/25' 
+                : 'glass-card text-gray-400 hover:text-white'
             }`}
           >
-            All Projects
-            <span className="ml-2 text-sm opacity-80">({projectsData.length})</span>
+            <FaLayerGroup className="w-4 h-4" />
+            All ({projectStats.total})
           </button>
           <button
-            onClick={() => {
-              setFilter('featured');
-              setVisibleCount(6);
-            }}
-            className={`relative px-7 py-2.5 rounded-full transition-all duration-300 font-medium ${
-              filter === 'featured'
-                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg shadow-purple-500/30'
-                : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-800 border border-gray-700'
+            onClick={() => { setCategory('frontend'); setTechFilter('all'); setVisibleCount(6); }}
+            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
+              category === 'frontend' 
+                ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/25' 
+                : 'glass-card text-gray-400 hover:text-white'
             }`}
           >
-            Featured
-            <span className="ml-2 text-sm opacity-80">({projectsData.filter(p => p.featured).length})</span>
+            <FaCode className="w-4 h-4" />
+            Frontend ({projectStats.frontend})
           </button>
+          <button
+            onClick={() => { setCategory('backend'); setTechFilter('all'); setVisibleCount(6); }}
+            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
+              category === 'backend' 
+                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25' 
+                : 'glass-card text-gray-400 hover:text-white'
+            }`}
+          >
+            <FaDatabase className="w-4 h-4" />
+            Backend ({projectStats.backend})
+          </button>
+          <button
+            onClick={() => { setCategory('fullstack'); setTechFilter('all'); setVisibleCount(6); }}
+            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
+              category === 'fullstack' 
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25' 
+                : 'glass-card text-gray-400 hover:text-white'
+            }`}
+          >
+            <FaLayerGroup className="w-4 h-4" />
+            Full Stack ({projectStats.fullstack})
+          </button>
+        </motion.div>
+
+        {/* Technology Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="flex justify-center gap-2 mb-12 flex-wrap"
+        >
+          {technologies.map(tech => (
+            <button
+              key={tech}
+              onClick={() => { setTechFilter(tech); setVisibleCount(6); }}
+              className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 ${
+                techFilter === tech 
+                  ? 'bg-purple-500/30 text-purple-400 border border-purple-500' 
+                  : 'glass-card text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              {tech === 'all' ? 'All Tech' : tech}
+            </button>
+          ))}
         </motion.div>
 
         {/* Projects Grid */}
@@ -97,6 +186,12 @@ const Projects = () => {
               whileHover={{ y: -8 }}
               className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl overflow-hidden backdrop-blur-sm border border-gray-800 hover:border-purple-500/50 transition-all duration-500"
             >
+              {/* Category Badge */}
+              <div className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-gradient-to-r ${categoryColors[project.category]} text-white text-xs font-semibold flex items-center gap-1 shadow-lg`}>
+                {categoryIcons[project.category]}
+                <span>{categoryNames[project.category]}</span>
+              </div>
+
               {/* Image Container */}
               <div className="relative overflow-hidden h-56">
                 <img
@@ -104,7 +199,7 @@ const Projects = () => {
                   alt={i18n.language === 'en' ? project.title : project.titleAr}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   onError={(e) => {
-                    e.target.src = 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Project+Image';
+                    e.target.src = 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Project';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -149,7 +244,7 @@ const Projects = () => {
                 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-5">
-                  {project.technologies.slice(0, 3).map((tech, i) => (
+                  {project.technologies.slice(0, 4).map((tech, i) => (
                     <span
                       key={i}
                       className="px-2.5 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-medium"
@@ -157,9 +252,9 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
+                  {project.technologies.length > 4 && (
                     <span className="px-2.5 py-1 text-xs rounded-full bg-gray-800 text-gray-400 border border-gray-700">
-                      +{project.technologies.length - 3}
+                      +{project.technologies.length - 4}
                     </span>
                   )}
                 </div>
@@ -190,8 +285,15 @@ const Projects = () => {
           ))}
         </div>
 
+        {/* No Projects Message */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-400">No projects found in this category.</p>
+          </div>
+        )}
+
         {/* Show More Button */}
-        {hasMore && (
+        {hasMore && filteredProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
