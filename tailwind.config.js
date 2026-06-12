@@ -22,6 +22,10 @@ export default {
       animation: {
         'gradient': 'gradient 3s ease infinite',
         'float': 'float 3s ease-in-out infinite',
+        'spin-slow': 'spin 8s linear infinite',
+        'glow': 'glow 2s ease-in-out infinite',
+        'slide-up': 'slideUp 0.5s ease-out',
+        'slide-down': 'slideDown 0.5s ease-out',
       },
       keyframes: {
         gradient: {
@@ -32,8 +36,20 @@ export default {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
         },
+        glow: {
+          '0%, 100%': { boxShadow: '0 0 5px rgba(139, 92, 246, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.8)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(50px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-50px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
     },
   },
   plugins: [],
-}
+};
