@@ -14,6 +14,114 @@
 }
 
 /* ============================================
+   RESPONSIVE CONTAINER & UTILITIES
+   ============================================ */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  p, .text-base {
+    font-size: 0.875rem !important;
+  }
+  .text-sm {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Responsive Grid */
+.responsive-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (min-width: 640px) {
+  .responsive-grid {
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+/* Touch-friendly buttons */
+@media (max-width: 768px) {
+  button, 
+  a[role="button"],
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Fix overflow */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
    ANIMATED BACKGROUND & LIGHT EFFECTS
    ============================================ */
 
@@ -80,7 +188,7 @@
   100% { transform: rotate(-360deg); }
 }
 
-/* Glow Orbs */
+/* Glow Orbs - Responsive */
 .glow-orb {
   position: fixed;
   border-radius: 50%;
@@ -91,11 +199,29 @@
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .glow-orb {
+    filter: blur(50px);
+    opacity: 0.1;
+  }
+  .glow-orb-1 { width: 200px; height: 200px; }
+  .glow-orb-2 { width: 180px; height: 180px; }
+  .glow-orb-3 { width: 150px; height: 150px; }
+  .glow-orb-4 { width: 140px; height: 140px; }
+  .glow-orb-5 { width: 120px; height: 120px; }
+}
+
+@media (min-width: 1024px) {
+  .glow-orb-1 { width: 350px; height: 350px; }
+  .glow-orb-2 { width: 300px; height: 300px; }
+  .glow-orb-3 { width: 250px; height: 250px; }
+  .glow-orb-4 { width: 220px; height: 220px; }
+  .glow-orb-5 { width: 180px; height: 180px; }
+}
+
 .glow-orb-1 {
   top: 20%;
   left: 10%;
-  width: 350px;
-  height: 350px;
   background: #8b5cf6;
   animation-delay: 0s;
 }
@@ -103,8 +229,6 @@
 .glow-orb-2 {
   bottom: 20%;
   right: 10%;
-  width: 300px;
-  height: 300px;
   background: #06b6d4;
   animation-delay: 2s;
 }
@@ -112,8 +236,6 @@
 .glow-orb-3 {
   top: 50%;
   right: 25%;
-  width: 250px;
-  height: 250px;
   background: #ec4899;
   animation-delay: 4s;
 }
@@ -121,8 +243,6 @@
 .glow-orb-4 {
   bottom: 15%;
   left: 20%;
-  width: 220px;
-  height: 220px;
   background: #f59e0b;
   animation-delay: 1s;
 }
@@ -130,25 +250,17 @@
 .glow-orb-5 {
   top: 60%;
   left: 40%;
-  width: 180px;
-  height: 180px;
   background: #10b981;
   animation-delay: 3s;
 }
 
 @keyframes floatOrb {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-  }
-  33% {
-    transform: translateY(-40px) translateX(30px);
-  }
-  66% {
-    transform: translateY(30px) translateX(-30px);
-  }
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-40px) translateX(30px); }
+  66% { transform: translateY(30px) translateX(-30px); }
 }
 
-/* Light Rays */
+/* Light Rays - Responsive */
 .light-rays {
   position: fixed;
   top: 0;
@@ -168,6 +280,13 @@
   animation: rayMove 8s linear infinite;
 }
 
+@media (max-width: 768px) {
+  .ray {
+    height: 1px;
+    opacity: 0.5;
+  }
+}
+
 .ray:nth-child(1) { top: 15%; animation-delay: 0s; }
 .ray:nth-child(2) { top: 30%; animation-delay: 1.5s; }
 .ray:nth-child(3) { top: 45%; animation-delay: 3s; }
@@ -176,17 +295,9 @@
 .ray:nth-child(6) { top: 90%; animation-delay: 7.5s; }
 
 @keyframes rayMove {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
 /* Floating Particles Container */
@@ -209,28 +320,23 @@
   animation: floatParticle linear infinite;
 }
 
+@media (max-width: 768px) {
+  .particle {
+    opacity: 0.2;
+  }
+}
+
 @keyframes floatParticle {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.5;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
 /* ============================================
    GLASSMORPHISM & CARDS
    ============================================ */
 
-/* Glassmorphism Effect */
 .glass {
   background: rgba(17, 17, 17, 0.7);
   backdrop-filter: blur(10px);
@@ -252,8 +358,14 @@
 /* Modern Card */
 .modern-card {
   background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(10, 10, 10, 0.9));
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (min-width: 1024px) {
+  .modern-card {
+    border-radius: 1.5rem;
+  }
 }
 
 .modern-card:hover {
@@ -274,7 +386,6 @@
    TEXT & TYPOGRAPHY
    ============================================ */
 
-/* Gradient Text */
 .gradient-text {
   background: linear-gradient(135deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
   -webkit-background-clip: text;
@@ -289,7 +400,6 @@
   50% { background-position: 100% 50%; }
 }
 
-/* Glow Text */
 .glow-text {
   text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
 }
@@ -339,7 +449,6 @@
   50% { transform: translateY(-15px); }
 }
 
-/* Animation Classes */
 .animate-gradient {
   animation: gradient 3s ease infinite;
   background-size: 200%;
@@ -379,6 +488,12 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .skill-bar {
+    height: 4px;
+  }
 }
 
 .skill-bar-fill {
@@ -453,7 +568,6 @@
    SCROLLBAR & RTL
    ============================================ */
 
-/* RTL Support */
 [dir="rtl"] {
   direction: rtl;
   text-align: right;
@@ -464,7 +578,6 @@
   text-align: left;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -501,7 +614,6 @@
    MISC
    ============================================ */
 
-/* Particle Background */
 .particle-bg {
   position: fixed;
   top: 0;
@@ -512,12 +624,10 @@
   z-index: 0;
 }
 
-/* Smooth Gradient Transition */
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Loading Animation for Images */
 img {
   transition: opacity 0.3s ease;
 }
@@ -531,44 +641,46 @@ img.loaded {
 }
 
 /* ============================================
-   CURSOR EFFECTS (MOUSE & TOUCH)
+   CURSOR EFFECTS (MOUSE & TOUCH) - Responsive
    ============================================ */
 
-/* Custom Cursor - للماوس */
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #8b5cf6;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.1s ease;
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+@media (min-width: 769px) {
+  .custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8b5cf6;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.05s ease;
+    filter: blur(20px);
+  }
+
+  .custom-cursor.cursor-hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #06b6d4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+    backdrop-filter: blur(4px);
+  }
 }
 
-.cursor-glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.05s ease;
-  filter: blur(20px);
-}
-
-.custom-cursor.cursor-hover {
-  width: 40px;
-  height: 40px;
-  background: rgba(139, 92, 246, 0.2);
-  border-color: #06b6d4;
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
-  backdrop-filter: blur(4px);
-}
-
+/* Touch Effects - للشاشات اللمسية */
 .touch-ripple {
   position: fixed;
   width: 80px;
@@ -604,7 +716,6 @@ img.loaded {
   filter: blur(15px);
 }
 
-/* Ripple Effect على العناصر المضغوطة */
 .ripple-effect {
   position: absolute;
   width: 100px;
@@ -616,61 +727,34 @@ img.loaded {
   pointer-events: none;
 }
 
-/* Keyframes */
 @keyframes touchRipple {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
 }
 
 @keyframes touchGlow {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
 }
 
 @keyframes clickGlow {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
+  0% { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 @keyframes ripple {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0;
-  }
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
 }
 
 /* ============================================
    EXTRA ANIMATIONS
    ============================================ */
 
-/* Magnetic Effect on Hover */
 .magnetic {
   transition: transform 0.2s ease;
 }
 
-/* Shine Effect */
 .shine {
   position: relative;
   overflow: hidden;
@@ -690,43 +774,28 @@ img.loaded {
 }
 
 @keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
-  }
-  20%, 100% {
-    transform: translateX(100%) rotate(25deg);
-  }
-}
-
-/* Floating Animation for Elements */
-@keyframes floating {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0% { transform: translateX(-100%) rotate(25deg); }
+  20%, 100% { transform: translateX(100%) rotate(25deg); }
 }
 
 .floating {
   animation: floating 3s ease-in-out infinite;
 }
 
-/* Pulse Border */
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
 .pulse-border {
   animation: pulseBorder 2s ease-in-out infinite;
 }
 
 @keyframes pulseBorder {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
-  }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
 }
 
-/* Gradient Move */
 .gradient-move {
   background: linear-gradient(90deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
   background-size: 300%;
@@ -734,15 +803,10 @@ img.loaded {
 }
 
 @keyframes gradientMove {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 300%;
-  }
+  0% { background-position: 0%; }
+  100% { background-position: 300%; }
 }
 
-/* Text Shine */
 .text-shine {
   background: linear-gradient(120deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
   background-size: 300%;
@@ -753,12 +817,8 @@ img.loaded {
 }
 
 @keyframes textShine {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 300%;
-  }
+  0% { background-position: 0%; }
+  100% { background-position: 300%; }
 }
 
 .project-card {
@@ -781,39 +841,23 @@ img.loaded {
   border-radius: 50%;
 }
 
+@media (max-width: 768px) {
+  .project-card::before {
+    display: none;
+  }
+}
+
 .project-card:hover::before {
   opacity: 1;
 }
 
-/* Card Glow Animation */
 @keyframes cardGlow {
-  0% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
 }
 
-/* Pulse Animation for Stats */
 @keyframes statPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes floatParticle {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
