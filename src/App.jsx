@@ -8,6 +8,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CursorEffect from './components/CursorEffect';
 
 function App() {
   const { i18n } = useTranslation();
@@ -16,7 +17,6 @@ function App() {
     document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
   }, [i18n.language]);
 
-  // Create particles on mount
   useEffect(() => {
     const particlesContainer = document.createElement('div');
     particlesContainer.className = 'particles';
@@ -41,6 +41,9 @@ function App() {
 
   return (
     <div className="bg-dark-bg min-h-screen relative">
+      {/* Cursor Effect */}
+      <CursorEffect />
+      
       {/* Animated Background */}
       <div className="animated-bg" />
       
@@ -49,9 +52,12 @@ function App() {
       <div className="glow-orb glow-orb-2" />
       <div className="glow-orb glow-orb-3" />
       <div className="glow-orb glow-orb-4" />
+      <div className="glow-orb glow-orb-5" />
       
       {/* Light Rays */}
       <div className="light-rays">
+        <div className="ray" />
+        <div className="ray" />
         <div className="ray" />
         <div className="ray" />
         <div className="ray" />
