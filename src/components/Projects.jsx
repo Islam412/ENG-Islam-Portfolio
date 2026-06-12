@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar, FaCode, FaDatabase, FaLayerGroup } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaArrowRight, FaStar, FaCode, FaDatabase, FaLayerGroup, FaEye, FaRocket } from 'react-icons/fa';
 import { projectsData, projectStats } from '../data/portfolioData';
 
 const Projects = () => {
@@ -28,6 +28,10 @@ const Projects = () => {
 
   const loadMore = () => {
     setVisibleCount(prev => prev + 3);
+  };
+
+  const showAll = () => {
+    setVisibleCount(filteredProjects.length);
   };
 
   // أيقونات التصنيفات
@@ -68,11 +72,9 @@ const Projects = () => {
         >
           <span className="text-purple-500 text-sm uppercase tracking-wider font-semibold">Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-bold mt-3 mb-4">
-            <span className="gradient-text">{t('projects.title')}</span>
+            <span className="gradient-text">Featured Projects</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            {t('projects.subtitle')}
-          </p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">My Recent Work</p>
         </motion.div>
 
         {/* Project Stats Cards */}
@@ -100,60 +102,92 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Category Filter Buttons */}
+        {/* Category Filter Buttons - Tabs Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center gap-3 mb-8 flex-wrap"
+          className="flex justify-center mb-10"
         >
-          <button
-            onClick={() => { setCategory('all'); setTechFilter('all'); setVisibleCount(6); }}
-            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
-              category === 'all' 
-                ? 'bg-gradient-to-r from-purple-500 to-cyan-500 text-white shadow-lg shadow-purple-500/25' 
-                : 'glass-card text-gray-400 hover:text-white'
-            }`}
-          >
-            <FaLayerGroup className="w-4 h-4" />
-            All ({projectStats.total})
-          </button>
-          <button
-            onClick={() => { setCategory('frontend'); setTechFilter('all'); setVisibleCount(6); }}
-            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
-              category === 'frontend' 
-                ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/25' 
-                : 'glass-card text-gray-400 hover:text-white'
-            }`}
-          >
-            <FaCode className="w-4 h-4" />
-            Frontend ({projectStats.frontend})
-          </button>
-          <button
-            onClick={() => { setCategory('backend'); setTechFilter('all'); setVisibleCount(6); }}
-            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
-              category === 'backend' 
-                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25' 
-                : 'glass-card text-gray-400 hover:text-white'
-            }`}
-          >
-            <FaDatabase className="w-4 h-4" />
-            Backend ({projectStats.backend})
-          </button>
-          <button
-            onClick={() => { setCategory('fullstack'); setTechFilter('all'); setVisibleCount(6); }}
-            className={`px-5 py-2 rounded-full transition-all duration-300 flex items-center gap-2 ${
-              category === 'fullstack' 
-                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25' 
-                : 'glass-card text-gray-400 hover:text-white'
-            }`}
-          >
-            <FaLayerGroup className="w-4 h-4" />
-            Full Stack ({projectStats.fullstack})
-          </button>
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-1.5 border border-gray-800">
+            <div className="flex flex-wrap justify-center gap-1.5">
+              <button
+                onClick={() => { setCategory('all'); setTechFilter('all'); setVisibleCount(6); }}
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  category === 'all' ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {category === 'all' && (
+                  <motion.div
+                    layoutId="activeCategory"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-xl"
+                    transition={{ type: 'spring', duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <FaLayerGroup className="w-4 h-4" />
+                  All ({projectStats.total})
+                </span>
+              </button>
+              <button
+                onClick={() => { setCategory('frontend'); setTechFilter('all'); setVisibleCount(6); }}
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  category === 'frontend' ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {category === 'frontend' && (
+                  <motion.div
+                    layoutId="activeCategory"
+                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl"
+                    transition={{ type: 'spring', duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <FaCode className="w-4 h-4" />
+                  Frontend ({projectStats.frontend})
+                </span>
+              </button>
+              <button
+                onClick={() => { setCategory('backend'); setTechFilter('all'); setVisibleCount(6); }}
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  category === 'backend' ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {category === 'backend' && (
+                  <motion.div
+                    layoutId="activeCategory"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl"
+                    transition={{ type: 'spring', duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <FaDatabase className="w-4 h-4" />
+                  Backend ({projectStats.backend})
+                </span>
+              </button>
+              <button
+                onClick={() => { setCategory('fullstack'); setTechFilter('all'); setVisibleCount(6); }}
+                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  category === 'fullstack' ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {category === 'fullstack' && (
+                  <motion.div
+                    layoutId="activeCategory"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl"
+                    transition={{ type: 'spring', duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <FaLayerGroup className="w-4 h-4" />
+                  Full Stack ({projectStats.fullstack})
+                </span>
+              </button>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Technology Filter */}
+        {/* Technology Filter - Chips */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -166,59 +200,62 @@ const Projects = () => {
               onClick={() => { setTechFilter(tech); setVisibleCount(6); }}
               className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 ${
                 techFilter === tech 
-                  ? 'bg-purple-500/30 text-purple-400 border border-purple-500' 
-                  : 'glass-card text-gray-500 hover:text-gray-300'
+                  ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/25' 
+                  : 'bg-gray-800/50 text-gray-400 hover:text-white border border-gray-700'
               }`}
             >
-              {tech === 'all' ? 'All Tech' : tech}
+              {tech === 'all' ? 'All Technologies' : tech}
             </button>
           ))}
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl overflow-hidden backdrop-blur-sm border border-gray-800 hover:border-purple-500/50 transition-all duration-500"
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              whileHover={{ y: -5 }}
+              className="group bg-dark-bg rounded-xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
             >
-              {/* Category Badge */}
-              <div className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-gradient-to-r ${categoryColors[project.category]} text-white text-xs font-semibold flex items-center gap-1 shadow-lg`}>
-                {categoryIcons[project.category]}
-                <span>{categoryNames[project.category]}</span>
-              </div>
-
-              {/* Image Container */}
-              <div className="relative overflow-hidden h-56">
+              {/* Image Section */}
+              <div className="relative h-48 overflow-hidden bg-gray-900">
                 <img
                   src={project.image}
-                  alt={i18n.language === 'en' ? project.title : project.titleAr}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   onError={(e) => {
                     e.target.src = 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Project';
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
+                {/* Category Badge */}
+                <div className={`absolute top-3 left-3 px-2 py-0.5 rounded-full text-[10px] font-medium text-white shadow-lg bg-gradient-to-r ${
+                  project.category === 'frontend' ? 'from-green-500 to-emerald-500' :
+                  project.category === 'backend' ? 'from-blue-500 to-cyan-500' :
+                  'from-purple-500 to-pink-500'
+                }`}>
+                  {categoryNames[project.category]}
+                </div>
+
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-xs font-semibold flex items-center gap-1 shadow-lg">
-                    <FaStar className="w-3 h-3" />
+                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-[9px] font-semibold flex items-center gap-1">
+                    <FaStar className="w-2.5 h-2.5" />
                     Featured
                   </div>
                 )}
-                
-                {/* Overlay Links on Hover */}
-                <div className="absolute inset-0 bg-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
+
+                {/* Hover Overlay Buttons */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-purple-500 transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0"
+                    className="w-10 h-10 rounded-xl bg-purple-500 flex items-center justify-center text-white hover:bg-purple-600 hover:scale-110 transition-all duration-300"
                   >
                     <FaExternalLinkAlt className="w-4 h-4" />
                   </a>
@@ -226,57 +263,57 @@ const Projects = () => {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-purple-500 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                    className="w-10 h-10 rounded-xl bg-gray-700 flex items-center justify-center text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300"
                   >
                     <FaGithub className="w-4 h-4" />
                   </a>
                 </div>
               </div>
-              
+
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:to-cyan-500 group-hover:bg-clip-text transition-all duration-300">
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                   {i18n.language === 'en' ? project.title : project.titleAr}
                 </h3>
-                <p className="text-gray-400 mb-4 text-sm leading-relaxed line-clamp-2">
-                  {i18n.language === 'en' ? project.description : project.descriptionAr}
+                <p className="text-gray-400 text-xs leading-relaxed mb-3 line-clamp-2">
+                  {i18n.language === 'en' ? project.description.substring(0, 80) : project.descriptionAr.substring(0, 80)}...
                 </p>
-                
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-5">
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {project.technologies.slice(0, 4).map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-medium"
+                      className="px-2 py-0.5 text-[9px] rounded bg-purple-500/10 text-purple-400"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="px-2.5 py-1 text-xs rounded-full bg-gray-800 text-gray-400 border border-gray-700">
+                    <span className="px-2 py-0.5 text-[9px] rounded bg-gray-800 text-gray-500">
                       +{project.technologies.length - 4}
                     </span>
                   )}
                 </div>
-                
-                {/* Links */}
-                <div className="flex gap-5 pt-3 border-t border-gray-800">
+
+                {/* Action Buttons - Improved Live Demo & Source Code */}
+                <div className="flex gap-2 pt-2 border-t border-gray-800">
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-500 transition-all duration-300 group/link"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group/btn"
                   >
-                    <FaExternalLinkAlt className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+                    <FaRocket className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
                     Live Demo
                   </a>
                   <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-500 transition-all duration-300 group/link"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-gray-600 text-gray-300 text-xs font-medium hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-400 transition-all duration-300 group/btn"
                   >
-                    <FaGithub className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+                    <FaGithub className="w-3 h-3 group-hover/btn:rotate-3 transition-transform" />
                     Source Code
                   </a>
                 </div>
@@ -292,42 +329,67 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Show More Button */}
+        {/* Show More & View All Buttons - جنب بعض */}
         {hasMore && filteredProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="text-center mt-12"
           >
-            <motion.button
-              onClick={loadMore}
-              className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full text-white font-semibold hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 flex items-center gap-2 mx-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span>Show More Projects</span>
-              <span className="text-sm opacity-80">({filteredProjects.length - visibleCount} remaining)</span>
-              <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+            <div className="flex flex-wrap justify-center gap-4">
+              {/* Show More Button */}
+              <motion.button
+                onClick={loadMore}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-medium flex items-center gap-2 shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
+              >
+                <FaEye className="w-4 h-4" />
+                <span>Show More</span>
+                <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">
+                  {filteredProjects.length - visibleCount}
+                </span>
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+
+              {/* View All Button */}
+              <motion.button
+                onClick={showAll}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-6 py-3 rounded-xl border-2 border-purple-500 text-purple-400 font-medium hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center gap-2"
+              >
+                <FaLayerGroup className="w-4 h-4" />
+                <span>View All</span>
+                <span className="text-xs">({filteredProjects.length})</span>
+                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </div>
           </motion.div>
         )}
 
-        {/* GitHub Link */}
+        {/* GitHub Link - Improved Card Style */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="text-center mt-10"
         >
           <a
             href="https://github.com/Islam412"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-purple-500 transition-all duration-300 group"
+            className="group inline-flex items-center gap-4 px-6 py-3 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 hover:border-purple-500 hover:bg-purple-500/10 transition-all duration-300"
           >
-            <span>View all projects on GitHub</span>
-            <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <div className="w-10 h-10 rounded-xl bg-gray-700 group-hover:bg-purple-500/20 flex items-center justify-center transition-all duration-300">
+              <FaGithub className="w-5 h-5 text-gray-400 group-hover:text-purple-400" />
+            </div>
+            <div className="text-left">
+              <div className="text-xs text-gray-500 group-hover:text-purple-400 transition-colors">GitHub Repository</div>
+              <div className="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">View all projects on GitHub</div>
+            </div>
+            <FaArrowRight className="w-4 h-4 text-gray-400 group-hover:text-purple-400 group-hover:translate-x-1 transition-all duration-300" />
           </a>
         </motion.div>
       </div>
