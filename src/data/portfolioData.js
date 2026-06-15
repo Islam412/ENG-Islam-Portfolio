@@ -77,7 +77,33 @@ export const projectsData = [
     featured: true,
   },
 
+  {
+    id: 4,
+    title: 'NAHARCO ALDUWLIYA - Corporate Website',
+    titleAr: 'موقع شركة نهاركو الدولية',
+    description: 'Professional corporate website showcasing company services, mission, blog posts, and contact information with bilingual support (Arabic/English).',
+    descriptionAr: 'موقع مؤسسي احترافي يعرض خدمات الشركة ورسالتها ومنشورات المدونة ومعلومات الاتصال مع دعم ثنائي اللغة (العربية/الإنجليزية).',
+    image: '/images/projects/naharco-alduwliya.jpg',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bilingual (AR/EN)'],
+    category: 'frontend',
+    liveLink: 'https://islam412.github.io/NAHARCO-ALDUWLIYA/',
+    githubLink: 'https://github.com/Islam412/NAHARCO-ALDUWLIYA',
+    featured: true,
+  },
 
+  {
+    id: 5,
+    title: 'Mahmoud Hosny - Professional Portfolio',
+    titleAr: 'معرض أعمال محمود حسني - بورتفوليو احترافي',
+    description: 'A modern, fully responsive personal portfolio website built for a client. Features a clean UI with animations, bilingual support (AR/EN), and showcases professional work effectively.',
+    descriptionAr: 'موقع بورتفوليو شخصي حديث ومتجاوب بالكامل تم بناؤه لعميل. يتميز بواجهة نظيفة مع أنيميشن، ودعم ثنائي اللغة (عربي/إنجليزي)، ويعرض الأعمال المهنية بشكل فعال.',
+    image: '/images/projects/mahmoud-portfolio.jpg',
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'PostCSS', 'ESLint'],
+    category: 'frontend', // مشروع React (واجهات أمامية)
+    liveLink: 'https://mahmoud-portfolio-eight.vercel.app/',
+    githubLink: 'https://github.com/Islam412/mahmoud-portfolio',
+    featured: true, // يمكن جعله مميزاً لأنه يظهر مهاراتك في العمل مع العملاء
+  },
 
   // Backend Projects
   {
