@@ -50,7 +50,7 @@ export const projectsData = [
   },
   
   {
-    id: 6, 
+    id: 2, 
     title: 'AL-Manhaj Islamic Platform',
     titleAr: 'منصة المنهاج الإسلامي',
     description: 'Comprehensive Islamic platform featuring Quran browsing, Hadith collection, prayer times, daily remembrance, electronic tasbih, podcasts, and Islamic lectures.',
@@ -65,17 +65,16 @@ export const projectsData = [
 
   {
     id: 3,
-    title: 'Portfolio Website',
-    titleAr: 'موقع بورتفوليو',
-    description: 'Creative portfolio website with animations and dark mode',
-    descriptionAr: 'موقع بورتفوليو إبداعي مع أنيميشن ووضع ليلي',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Portfolio',
-    technologies: ['React', 'Framer Motion', 'Tailwind CSS'],
+    title: 'Raheeq Al Jannah - Honey E-Commerce',
+    titleAr: 'متجر رحيق الجنة - منتجات العسل',
+    description: 'Modern e-commerce platform for premium honey brand featuring dynamic product catalog, responsive design, nature-inspired UI, and seamless ordering experience.',
+    descriptionAr: 'منصة تجارة إلكترونية حديثة لعلامة تجارية مميزة للعسل، تتضمن كتالوج منتجات ديناميكي، تصميم متجاوب، واجهة مستوحاة من الطبيعة، وتجربة طلب سلسة.',
+    image: '/images/projects/raheeq-al-jannah.jpg',
+    technologies: ['React', 'Tailwind CSS', 'JavaScript', 'CSS3', 'Vercel'],
     category: 'frontend',
-    subcategory: 'React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: true
+    liveLink: 'https://raheeq-al-jannah.vercel.app',
+    githubLink: 'https://github.com/Islam412/RAHEEQ-AL-JANNAH',
+    featured: true,
   },
 
 
