@@ -133,6 +133,33 @@ export const projectsData = [
     featured: true,
   },
 
+  {
+    id: 8,
+    title: 'Dental Clinic Management System',
+    titleAr: 'نظام إدارة عيادة الأسنان',
+    description: 'A comprehensive management system for dental clinics featuring patient management, appointment scheduling, billing system, and treatment tracking. Designed to streamline clinic operations and enhance patient experience.',
+    descriptionAr: 'نظام متكامل لإدارة عيادات الأسنان يشمل إدارة المرضى، جدولة المواعيد، نظام الفواتير، وتتبع العلاجات. مصمم لتبسيط عمليات العيادة وتحسين تجربة المرضى.',
+    image: '/images/projects/dental-clinic.jpg',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
+    category: 'frontend',
+    liveLink: 'https://dental-clinic-seven-tan.vercel.app',
+    githubLink: 'https://github.com/Islam412/Dental-clinic',
+    featured: true,
+  },
+
+  {
+    id: 9,
+    title: 'Booking System - Travel Platform',
+    titleAr: 'نظام الحجز - منصة سفر متكاملة',
+    description: 'A massive, comprehensive frontend system for travel booking covering flights, hotels, tours, visas, apartments, buses, and cruises. Features user authentication, dashboards, booking flows, and responsive design.',
+    descriptionAr: 'نظام أمامي ضخم ومتكامل لحجز السفر يغطي الرحلات الجوية، الفنادق، الجولات السياحية، التأشيرات، الشقق، الحافلات، والرحلات البحرية. يتضمن مصادقة المستخدم، لوحات التحكم، تدفقات الحجز، وتصميم متجاوب.',
+    image: '/images/projects/booking-system.jpg',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'Multi-page App'],
+    category: 'frontend',
+    liveLink: 'https://booking-systems-frontend-zeta.vercel.app/',
+    githubLink: 'https://github.com/Islam412/Booking-System-frontend',
+    featured: true,
+  },
   // Backend Projects
   {
     id: 4,
