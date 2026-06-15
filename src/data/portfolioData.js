@@ -119,6 +119,20 @@ export const projectsData = [
     featured: true,
   },
 
+  {
+    id: 7,
+    title: 'Walid Allam - Professional Portfolio',
+    titleAr: 'معرض أعمال وليد علام - بورتفوليو احترافي',
+    description: 'A modern, responsive personal portfolio website built for a client using cutting-edge frontend technologies. Features a clean UI, smooth animations, and bilingual support (Arabic/English).',
+    descriptionAr: 'موقع بورتفوليو شخصي حديث ومتجاوب بالكامل تم بناؤه لعميل باستخدام أحدث تقنيات الواجهات الأمامية. يتميز بواجهة نظيفة، وأنيميشن سلسة، ودعم ثنائي اللغة (عربي/إنجليزي).',
+    image: '/images/projects/walid-allam-portfolio.jpg',
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'ESLint', 'PostCSS'],
+    category: 'frontend',
+    liveLink: 'https://walid-allam-portfolio.vercel.app',
+    githubLink: 'https://github.com/Islam412/Walid-Allam-Portfolio',
+    featured: true,
+  },
+
   // Backend Projects
   {
     id: 4,
