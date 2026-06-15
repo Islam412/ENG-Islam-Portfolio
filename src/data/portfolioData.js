@@ -48,21 +48,21 @@ export const projectsData = [
     githubLink: 'https://github.com/Islam412/MCSOS-System',
     featured: true
   },
-
+  
   {
-    id: 2,
-    title: 'E-Commerce Frontend',
-    titleAr: 'واجهة متجر إلكتروني',
-    description: 'Modern e-commerce frontend with shopping cart, product filtering, and responsive design',
-    descriptionAr: 'واجهة متجر إلكتروني حديثة مع سلة تسوق وتصفية المنتجات',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce+FE',
-    technologies: ['React', 'Tailwind CSS', 'Redux', 'Axios'],
+    id: 6, 
+    title: 'AL-Manhaj Islamic Platform',
+    titleAr: 'منصة المنهاج الإسلامي',
+    description: 'Comprehensive Islamic platform featuring Quran browsing, Hadith collection, prayer times, daily remembrance, electronic tasbih, podcasts, and Islamic lectures.',
+    descriptionAr: 'منصة إسلامية شاملة تضم المصحف الكريم، الأحاديث النبوية، أوقات الصلاة، الأذكار اليومية، المسبحة الإلكترونية، البودكاست والمحاضرات الإسلامية.',
+    image: '/images/projects/al-manhaj.jpg',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'REST API', 'Vercel'],
     category: 'frontend',
-    subcategory: 'React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: true
+    liveLink: 'https://manahij.vercel.app/',
+    githubLink: 'https://github.com/Islam412/AL-Manhaj',
+    featured: true,
   },
+
   {
     id: 3,
     title: 'Portfolio Website',
