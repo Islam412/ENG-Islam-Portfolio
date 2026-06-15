@@ -105,6 +105,20 @@ export const projectsData = [
     featured: true, // يمكن جعله مميزاً لأنه يظهر مهاراتك في العمل مع العملاء
   },
 
+  {
+    id: 6,
+    title: 'Dr. Hatem Portfolio - Medical Professional',
+    titleAr: 'معرض أعمال د. حاتم عبد القافي - بورتفوليو طبي احترافي',
+    description: 'A modern, fully responsive portfolio website for a medical consultant. Features bilingual support (AR/EN), interactive disease cards, WhatsApp booking system, photo gallery with lightbox, and Google Maps integration.',
+    descriptionAr: 'موقع بورتفوليو حديث ومتجاوب بالكامل لاستشاري طبي. يتميز بدعم ثنائي اللغة (عربي/إنجليزي)، بطاقات أمراض تفاعلية، نظام حجز عبر واتساب، معرض صور مع خاصية Lightbox، وتكامل مع خرائط Google.',
+    image: '/images/projects/dr-hatem-portfolio.jpg',
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'i18next', 'React Icons'],
+    category: 'frontend',
+    liveLink: 'https://dr-hatem-portfolio.vercel.app/',
+    githubLink: 'https://github.com/Islam412/dr-hatem-portfolio',
+    featured: true,
+  },
+
   // Backend Projects
   {
     id: 4,
