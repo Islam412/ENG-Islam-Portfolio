@@ -37,6 +37,20 @@ export const projectsData = [
   // Frontend Projects
   {
     id: 1,
+    title: 'MCSOS Medical System',
+    titleAr: 'نظام إدارة المركز الطبي MCSOS',
+    description: 'Comprehensive Medical Center Management System with modern UI, authentication flow, and admin dashboard for managing patients, appointments, and staff.',
+    descriptionAr: 'نظام متكامل لإدارة المركز الطبي بواجهة حديثة، يشمل نظام مصادقة ولوحة تحكم إدارية لإدارة المرضى والمواعيد والموظفين.',
+    image: '/images/projects/mcsos-system.jpg',
+    technologies: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'ESLint', 'PostCSS'],
+    category: 'frontend',
+    liveLink: 'https://mcsos-system.vercel.app/login',
+    githubLink: 'https://github.com/Islam412/MCSOS-System',
+    featured: true
+  },
+
+  {
+    id: 2,
     title: 'E-Commerce Frontend',
     titleAr: 'واجهة متجر إلكتروني',
     description: 'Modern e-commerce frontend with shopping cart, product filtering, and responsive design',
@@ -50,7 +64,7 @@ export const projectsData = [
     featured: true
   },
   {
-    id: 2,
+    id: 3,
     title: 'Portfolio Website',
     titleAr: 'موقع بورتفوليو',
     description: 'Creative portfolio website with animations and dark mode',
@@ -63,20 +77,8 @@ export const projectsData = [
     githubLink: 'https://github.com/Islam412',
     featured: true
   },
-  {
-    id: 3,
-    title: 'Dashboard UI',
-    titleAr: 'واجهة لوحة تحكم',
-    description: 'Admin dashboard with charts, tables, and data visualization',
-    descriptionAr: 'لوحة تحكم إدارية مع رسوم بيانية وجداول',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Dashboard',
-    technologies: ['React', 'Chart.js', 'Tailwind CSS'],
-    category: 'frontend',
-    subcategory: 'React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: false
-  },
+
+
 
   // Backend Projects
   {
