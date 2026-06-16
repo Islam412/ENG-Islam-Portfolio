@@ -160,10 +160,24 @@ export const projectsData = [
     githubLink: 'https://github.com/Islam412/Booking-System-frontend',
     featured: true,
   },
+
   // Backend Projects
-  
   {
     id: 10,
+    title: 'Amazon Clone - E-commerce Platform',
+    titleAr: 'نسخة أمازون - منصة تجارة إلكترونية متكاملة',
+    description: 'A fully functional e-commerce platform built with Django, featuring user authentication, product catalog, shopping cart, order processing, payment integration (Stripe), caching (Redis), and task queues (Celery). Dockerized for easy deployment.',
+    descriptionAr: 'منصة تجارة إلكترونية متكاملة مبنية بـ Django، تشمل توثيق المستخدمين، كتالوج منتجات، سلة تسوق، معالجة الطلبات، تكامل الدفع (Stripe)، تخزين مؤقت (Redis)، ومهام غير متزامنة (Celery).',
+    image: '/images/projects/amazon-clone.jpg',
+    technologies: ['Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'Redis', 'Celery', 'Stripe', 'Docker', 'JavaScript'],
+    category: 'backend',
+    liveLink: '#', // (heroku)
+    githubLink: 'https://github.com/Islam412/Amazon-Clone',
+    featured: true,
+  },
+
+  {
+    id: 11,
     title: 'Paylio - Full Payment Gateway',
     titleAr: 'بايليو - نظام بوابة دفع متكاملة',
     description: 'A comprehensive full-stack payment gateway system built with Django, featuring user dashboard, secure authentication, JWT, admin panel, and complete transaction management. Supports fund transfers and payment processing.',
@@ -177,7 +191,36 @@ export const projectsData = [
   },
 
   {
-    id: 11,
+    id: 12,
+    title: 'Facebook Clone - Messenger Clone - Social Media Platform',
+    titleAr: 'نسخة فيسبوك - منصة تواصل اجتماعي',
+    description: 'A social media platform clone built with Django, featuring user authentication, post creation and management, friend requests, interactions, and responsive design.',
+    descriptionAr: 'نسخة من منصة التواصل الاجتماعي فيسبوك مبنية بـ Django، تشمل توثيق المستخدمين، إنشاء وإدارة المنشورات، طلبات الصداقة، التفاعلات، وتصميم متجاوب.',
+    image: '/images/projects/facebook-clone.jpg',
+    technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
+    category: 'backend',
+    liveLink: '#',
+    githubLink: 'https://github.com/Islam412/Facebook-Clone',
+    featured: true,
+  },
+
+  {
+    id: 13,
+    title: 'Library Management System',
+    titleAr: 'نظام إدارة المكتبات',
+    description: 'A comprehensive library management system built with Django, featuring book management, user/member management, and library operations. Provides a simple web-based interface for all library workflows.',
+    descriptionAr: 'نظام متكامل لإدارة المكتبات مبني بـ Django، يشمل إدارة الكتب، إدارة المستخدمين/الأعضاء، وعمليات المكتبة. يوفر واجهة ويب بسيطة لجميع مهام سير العمل.',
+    image: '/images/projects/library-management-system.jpg',
+    technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
+    category: 'fullstack',
+    liveLink: '#',
+    githubLink: 'https://github.com/Islam412/Library-Management-System',
+    featured: true,
+  },
+
+  // Full Stack Projects
+  {
+    id: 14,
     title: 'Amazon Clone - E-commerce Platform',
     titleAr: 'نسخة أمازون - منصة تجارة إلكترونية متكاملة',
     description: 'A fully functional e-commerce platform built with Django, featuring user authentication, product catalog, shopping cart, order processing, payment integration (Stripe), caching (Redis), and task queues (Celery). Dockerized for easy deployment.',
@@ -185,82 +228,52 @@ export const projectsData = [
     image: '/images/projects/amazon-clone.jpg',
     technologies: ['Python', 'Django', 'Django REST Framework', 'PostgreSQL', 'Redis', 'Celery', 'Stripe', 'Docker', 'JavaScript'],
     category: 'fullstack',
-    liveLink: '#',
+    liveLink: '#', // (heroku)
     githubLink: 'https://github.com/Islam412/Amazon-Clone',
     featured: true,
   },
+
   {
-    id: 6,
-    title: 'Database Optimizer',
-    titleAr: 'محسن قواعد البيانات',
-    description: 'SQL query optimizer with performance monitoring',
-    descriptionAr: 'محسن استعلامات SQL مع مراقبة الأداء',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Database',
-    technologies: ['Python', 'SQL', 'MySQL', 'PostgreSQL'],
-    category: 'backend',
-    subcategory: 'SQL',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: false
+    id: 15,
+    title: 'Paylio - Full Payment Gateway',
+    titleAr: 'بايليو - نظام بوابة دفع متكاملة',
+    description: 'A comprehensive full-stack payment gateway system built with Django, featuring user dashboard, secure authentication, JWT, admin panel, and complete transaction management. Supports fund transfers and payment processing.',
+    descriptionAr: 'نظام بوابة دفع متكامل (Full-Stack) مبني بـ Django، يتميز بلوحة تحكم للمستخدم، توثيق آمن، JWT، لوحة إدارة كاملة، وإدارة المعاملات المالية. يدعم تحويل الأموال ومعالجة المدفوعات.',
+    image: '/images/projects/payment-system.jpg',
+    technologies: ['Python', 'Django', 'Django REST Framework', 'JWT', 'Bootstrap 5', 'JavaScript', 'SQLite' , 'PostgreSQL' , 'MySQL'],
+    category: 'fullstack',
+    liveLink: 'https://paylio-system.up.railway.app/', // (Railway)
+    githubLink: 'https://github.com/Islam412/Payment-system',
+    featured: true,
   },
 
-  // Full Stack Projects
   {
-    id: 7,
-    title: 'E-Commerce Platform',
-    titleAr: 'منصة تجارة إلكترونية',
-    description: 'Full-stack e-commerce platform with payment integration, cart system, and admin dashboard',
-    descriptionAr: 'منصة تجارة إلكترونية فول ستاك مع تكامل الدفع',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=E-Commerce',
-    technologies: ['React', 'Django', 'PostgreSQL', 'Redis', 'Docker', 'MySQL'],
+    id: 16,
+    title: 'Facebook Clone - Messenger Clone - Social Media Platform',
+    titleAr: 'نسخة فيسبوك - منصة تواصل اجتماعي',
+    description: 'A social media platform clone built with Django, featuring user authentication, post creation and management, friend requests, interactions, and responsive design.',
+    descriptionAr: 'نسخة من منصة التواصل الاجتماعي فيسبوك مبنية بـ Django، تشمل توثيق المستخدمين، إنشاء وإدارة المنشورات، طلبات الصداقة، التفاعلات، وتصميم متجاوب.',
+    image: '/images/projects/facebook-clone.jpg',
+    technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
     category: 'fullstack',
-    subcategory: 'Django-React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: true
+    liveLink: '#',
+    githubLink: 'https://github.com/Islam412/Facebook-Clone',
+    featured: true,
   },
+
   {
-    id: 8,
-    title: 'Task Management System',
-    titleAr: 'نظام إدارة المهام',
-    description: 'Real-time task management app with team collaboration features',
-    descriptionAr: 'تطبيق إدارة مهام لحظي مع ميزات تعاون الفريق',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Task+Manager',
-    technologies: ['React', 'Django REST', 'Celery', 'WebSocket', 'MySQL', 'SQL'],
+    id: 17,
+    title: 'Library Management System',
+    titleAr: 'نظام إدارة المكتبات',
+    description: 'A comprehensive library management system built with Django, featuring book management, user/member management, and library operations. Provides a simple web-based interface for all library workflows.',
+    descriptionAr: 'نظام متكامل لإدارة المكتبات مبني بـ Django، يشمل إدارة الكتب، إدارة المستخدمين/الأعضاء، وعمليات المكتبة. يوفر واجهة ويب بسيطة لجميع مهام سير العمل.',
+    image: '/images/projects/library-management-system.jpg',
+    technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
     category: 'fullstack',
-    subcategory: 'Django-React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: true
+    liveLink: '#',
+    githubLink: 'https://github.com/Islam412/Library-Management-System',
+    featured: true,
   },
-  {
-    id: 9,
-    title: 'Analytics Dashboard',
-    titleAr: 'لوحة تحليلات',
-    description: 'Interactive dashboard with real-time data visualization and reports',
-    descriptionAr: 'لوحة تحكم تفاعلية مع تصور بيانات لحظي',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Analytics',
-    technologies: ['React', 'Chart.js', 'Django', 'PostgreSQL', 'SQL'],
-    category: 'fullstack',
-    subcategory: 'Django-React',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: true
-  },
-  {
-    id: 10,
-    title: 'Social Media API',
-    titleAr: 'API لوسائل التواصل الاجتماعي',
-    description: 'RESTful API for social media platform with authentication and real-time features',
-    descriptionAr: 'RESTful API لمنصة تواصل اجتماعي',
-    image: 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Social+API',
-    technologies: ['Django REST', 'JWT', 'Redis', 'PostgreSQL', 'MySQL'],
-    category: 'backend',
-    subcategory: 'Django',
-    liveLink: 'https://example.com',
-    githubLink: 'https://github.com/Islam412',
-    featured: false
-  }
 ];
 
 // إحصائيات المشاريع حسب التصنيف
