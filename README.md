@@ -24,28 +24,28 @@ It includes a responsive design and sections suitable for a developer portfolio 
 1. Clone the repository:
    ```bash
 
-    - git clone https://github.com/Islam412/ENG-Islam-Portfolio.git
+    git clone https://github.com/Islam412/ENG-Islam-Portfolio.git
 
 2. Go to project folder:
     ```bash
 
-    - cd ENG-Islam-Portfolio
+    cd ENG-Islam-Portfolio
 
 3. Install dependencies:
     ```bash
 
-    - npm install
+    npm install
 
 4. Start the development server:
     ```bash
 
-    - npm run dev
+    npm run dev
 
 5. Open in your browser (usually):
     text
     ```bash
 
-    - http://localhost:5173/
+    http://localhost:5173/
 
 ## 📸 Screenshots
 
