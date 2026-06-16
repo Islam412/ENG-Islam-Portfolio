@@ -1,16 +1,60 @@
-# React + Vite
+# Islam Hamdy — Web Developer Portfolio (ENG-Islam-Portfolio)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my web developer portfolio!  
+This project is a modern, responsive personal website built to showcase my work, skills, and contact information in a clean and professional layout.  
 
-Currently, two official plugins are available:
+## 🚀 Live Server
+You can view the live website here:  
+- **Live Server:** `https://islam-portfolio-phi.vercel.app/`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🧩 Project Overview
+This portfolio is built using a fast React + Vite setup with a clean UI styled using Tailwind CSS.  
+It includes a responsive design and sections suitable for a developer portfolio (such as introduction, skills, projects, and contact area).  
 
-## React Compiler
+*(When you add screenshots, you can include them in the “Screenshots” section below.)*
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
+- **React** (UI / components)
+- **Vite** (development & build tool)
+- **Tailwind CSS** (styling)
+- **JavaScript** (main logic)
+- **ESLint** (code quality)
 
-## Expanding the ESLint configuration
+## 📌 How to Run Locally
+1. Clone the repository:
+   ```bash
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    - git clone https://github.com/Islam412/ENG-Islam-Portfolio.git
+
+2. Go to project folder:
+    ```bash
+
+    - cd ENG-Islam-Portfolio
+
+3. Install dependencies:
+    ```bash
+
+    - npm install
+
+4. Start the development server:
+    ```bash
+
+    - npm run dev
+
+5. Open in your browser (usually):
+    text
+    ```bash
+
+    - http://localhost:5173/
+
+## 📸 Screenshots
+
+### AR Demo
+- ![AR Demo](public/readme/ar-demo.png)
+
+### EN Demo
+- ![EN Demo](public/readme/en-demo.png)
+
+## 📬 Contact
+
+  - If you’d like to work together, feel free to reach out via the contact section on the website or through my GitHub profile.
