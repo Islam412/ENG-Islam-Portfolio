@@ -47,6 +47,8 @@ const Projects = () => {
     fullstack: t('projects.fullStack'),
   };
 
+  const allLabel = i18n.language === 'ar' ? 'الكل' : 'All';
+
   return (
     <>
       <section id="projects" className="py-16 md:py-20 bg-gradient-to-b from-dark-card to-dark-bg relative overflow-hidden" ref={ref}>
@@ -136,7 +138,7 @@ const Projects = () => {
                   )}
                   <span className="relative z-10 flex items-center gap-1 md:gap-2">
                     <FaLayerGroup className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="font-semibold hidden sm:inline">All</span>
+                    <span className="font-semibold hidden sm:inline">{allLabel}</span>
                     <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
                       category === 'all' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                     }`}>
@@ -227,7 +229,7 @@ const Projects = () => {
             className="flex justify-center mb-8 md:mb-10"
           >
             <div className="relative">
-              <button
+              {/* <button
                 onClick={() => setShowTechFilter(!showTechFilter)}
                 className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm bg-gray-800/50 text-gray-300 hover:text-white border border-gray-700 hover:border-purple-500 transition-all duration-300"
               >
@@ -236,7 +238,7 @@ const Projects = () => {
                 <svg className={`w-2.5 h-2.5 md:w-3 md:h-3 transition-transform duration-300 ${showTechFilter ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </button> */}
               {showTechFilter && (
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900 border border-gray-700 rounded-lg md:rounded-xl overflow-hidden shadow-xl z-20 min-w-[140px] md:min-w-[160px]">
                   <div className="p-1">
@@ -424,6 +426,7 @@ const Projects = () => {
         </div>
       </section>
 
+      {/* ✅ Modal - مع صورة كاملة */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -440,6 +443,7 @@ const Projects = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-purple-500/30"
             >
+              {/* زر الإغلاق */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-gray-800/80 flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-500 transition-all duration-300"
@@ -447,17 +451,19 @@ const Projects = () => {
                 <FaTimes className="w-4 h-4" />
               </button>
 
-              <div className="relative h-56 overflow-hidden">
+              {/* ✅ صورة المشروع - تظهر كاملة */}
+              <div className="relative w-full bg-gray-900">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-h-[400px] object-contain"
                   onError={(e) => {
                     e.target.src = 'https://placehold.co/600x400/1a1a1a/8b5cf6?text=Project';
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
+                {/* Category Badge في المودال */}
                 <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg bg-gradient-to-r ${
                   selectedProject.category === 'frontend' ? 'from-green-500 to-emerald-500' :
                   selectedProject.category === 'backend' ? 'from-blue-500 to-cyan-500' :
@@ -468,7 +474,9 @@ const Projects = () => {
                 </div>
               </div>
 
+              {/* المحتوى */}
               <div className="p-6 space-y-5">
+                {/* العنوان */}
                 <div>
                   <h2 className="text-2xl font-bold text-white">
                     {i18n.language === 'en' ? selectedProject.title : selectedProject.titleAr}
@@ -483,6 +491,7 @@ const Projects = () => {
                   </div>
                 </div>
 
+                {/* الوصف */}
                 <div>
                   <h3 className="text-sm font-semibold text-purple-400 mb-2 flex items-center gap-2">
                     <FaInfoCircle className="w-3.5 h-3.5" /> {t('projects.description')}
@@ -492,6 +501,7 @@ const Projects = () => {
                   </p>
                 </div>
 
+                {/* التقنيات */}
                 <div>
                   <h3 className="text-sm font-semibold text-purple-400 mb-2 flex items-center gap-2">
                     <FaCode className="w-3.5 h-3.5" /> {t('projects.technologies')}
@@ -508,6 +518,7 @@ const Projects = () => {
                   </div>
                 </div>
 
+                {/* معلومات إضافية */}
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-gray-400 text-xs">
                     <FaTag className="w-3.5 h-3.5 text-purple-500" />
@@ -516,6 +527,7 @@ const Projects = () => {
                   </div>
                 </div>
 
+                {/* أزرار الإجراءات */}
                 <div className="flex gap-3 pt-4 border-t border-gray-800">
                   <a
                     href={selectedProject.liveLink}
