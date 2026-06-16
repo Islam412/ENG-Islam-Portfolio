@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { FaWhatsapp } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const WhatsAppButton = () => {
+  const { t } = useTranslation();
   const whatsappUrl = `https://wa.me/${personalInfo.whatsapp}?text=Hello%20Islam%2C%20I%20saw%20your%20portfolio%20and%20I%27m%20interested%20in%20working%20with%20you!`;
 
   return (
@@ -27,7 +29,7 @@ const WhatsAppButton = () => {
     >
       <FaWhatsapp className="w-8 h-8" />
       <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        Chat on WhatsApp
+        {t('whatsapp.chat')}
       </span>
     </motion.a>
   );
