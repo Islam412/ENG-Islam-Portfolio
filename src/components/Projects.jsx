@@ -19,10 +19,8 @@ const Projects = () => {
   const [showTechFilter, setShowTechFilter] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // تقنيات متاحة للفلترة - استخراج من المشاريع
   const allTechnologies = ['all', 'React', 'Django', 'Python', 'SQL', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS3', 'Vite', 'Docker', 'Redis', 'Celery', 'Stripe'];
 
-  // فلترة المشاريع حسب التصنيف والتقنية
   const filteredProjects = projectsData.filter(project => {
     const matchCategory = category === 'all' || project.category === category;
     const matchTech = techFilter === 'all' || project.technologies.includes(techFilter);
@@ -43,24 +41,21 @@ const Projects = () => {
   const openModal = (project) => setSelectedProject(project);
   const closeModal = () => setSelectedProject(null);
 
-  // أسماء التصنيفات للعرض
   const categoryNames = {
-    frontend: 'Frontend',
-    backend: 'Backend',
-    fullstack: 'Full Stack',
+    frontend: t('projects.frontend'),
+    backend: t('projects.backend'),
+    fullstack: t('projects.fullStack'),
   };
 
   return (
     <>
       <section id="projects" className="py-16 md:py-20 bg-gradient-to-b from-dark-card to-dark-bg relative overflow-hidden" ref={ref}>
-        {/* Background Decoration */}
         <div className="absolute inset-0">
           <div className="absolute top-20 right-10 w-64 h-64 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" />
           <div className="absolute bottom-20 left-10 w-64 h-64 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -73,16 +68,15 @@ const Projects = () => {
               className="inline-block mb-2 md:mb-3"
             >
               <span className="text-purple-500 text-[10px] md:text-xs uppercase tracking-wider font-semibold bg-purple-500/10 px-3 md:px-4 py-1 rounded-full">
-                Portfolio
+                {t('projects.portfolio')}
               </span>
             </motion.div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mt-2">
-              <span className="gradient-text">Featured Projects</span>
+              <span className="gradient-text">{t('projects.title')}</span>
             </h2>
-            <p className="text-gray-400 text-xs md:text-sm mt-2">My Recent Work</p>
+            <p className="text-gray-400 text-xs md:text-sm mt-2">{t('projects.subtitle')}</p>
           </motion.div>
 
-          {/* Project Stats Cards - Responsive Grid */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -93,33 +87,32 @@ const Projects = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
               <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
                 <div className="text-xl md:text-2xl font-bold text-purple-500">{projectStats.total}</div>
-                <div className="text-[8px] md:text-[10px] text-gray-500">Total</div>
+                <div className="text-[8px] md:text-[10px] text-gray-500">{t('projects.total')}</div>
               </div>
             </div>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
               <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
                 <div className="text-xl md:text-2xl font-bold text-green-500">{projectStats.frontend}</div>
-                <div className="text-[8px] md:text-[10px] text-gray-500">Frontend</div>
+                <div className="text-[8px] md:text-[10px] text-gray-500">{t('projects.frontend')}</div>
               </div>
             </div>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
               <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
                 <div className="text-xl md:text-2xl font-bold text-blue-500">{projectStats.backend}</div>
-                <div className="text-[8px] md:text-[10px] text-gray-500">Backend</div>
+                <div className="text-[8px] md:text-[10px] text-gray-500">{t('projects.backend')}</div>
               </div>
             </div>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg md:rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
               <div className="relative bg-dark-bg/80 backdrop-blur-sm rounded-lg md:rounded-xl py-2 md:py-3 text-center border border-gray-800 group-hover:border-transparent transition-all duration-300">
                 <div className="text-xl md:text-2xl font-bold text-purple-500">{projectStats.fullstack}</div>
-                <div className="text-[8px] md:text-[10px] text-gray-500">Full Stack</div>
+                <div className="text-[8px] md:text-[10px] text-gray-500">{t('projects.fullStack')}</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Category Filter Buttons - Scrollable on Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -167,7 +160,7 @@ const Projects = () => {
                   )}
                   <span className="relative z-10 flex items-center gap-1 md:gap-2">
                     <FaCode className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="font-semibold hidden sm:inline">Frontend</span>
+                    <span className="font-semibold hidden sm:inline">{t('projects.frontend')}</span>
                     <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
                       category === 'frontend' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                     }`}>
@@ -191,7 +184,7 @@ const Projects = () => {
                   )}
                   <span className="relative z-10 flex items-center gap-1 md:gap-2">
                     <FaDatabase className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="font-semibold hidden sm:inline">Backend</span>
+                    <span className="font-semibold hidden sm:inline">{t('projects.backend')}</span>
                     <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
                       category === 'backend' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                     }`}>
@@ -215,7 +208,7 @@ const Projects = () => {
                   )}
                   <span className="relative z-10 flex items-center gap-1 md:gap-2">
                     <FaLayerGroup className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="font-semibold hidden sm:inline">Full Stack</span>
+                    <span className="font-semibold hidden sm:inline">{t('projects.fullStack')}</span>
                     <span className={`px-1.5 md:px-2 py-0.5 rounded-full text-[9px] md:text-xs font-bold transition-all duration-300 ${
                       category === 'fullstack' ? 'bg-white/20 text-white' : 'bg-gray-800 text-gray-400'
                     }`}>
@@ -227,7 +220,6 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          {/* Technology Filter - Dropdown for Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -240,7 +232,7 @@ const Projects = () => {
                 className="flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm bg-gray-800/50 text-gray-300 hover:text-white border border-gray-700 hover:border-purple-500 transition-all duration-300"
               >
                 <FaFilter className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                <span>{techFilter === 'all' ? 'Filter by Tech' : techFilter}</span>
+                <span>{techFilter === 'all' ? t('projects.filterByTech') : techFilter}</span>
                 <svg className={`w-2.5 h-2.5 md:w-3 md:h-3 transition-transform duration-300 ${showTechFilter ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -258,7 +250,7 @@ const Projects = () => {
                             : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                         }`}
                       >
-                        {tech === 'all' ? 'All Technologies' : tech}
+                        {tech === 'all' ? t('projects.allTechnologies') : tech}
                       </button>
                     ))}
                   </div>
@@ -267,7 +259,6 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          {/* Projects Grid - Responsive */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {visibleProjects.map((project, index) => (
               <motion.div
@@ -279,7 +270,6 @@ const Projects = () => {
                 className="group bg-dark-bg rounded-lg md:rounded-xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300 cursor-pointer"
                 onClick={() => openModal(project)}
               >
-                {/* Image Section */}
                 <div className="relative h-36 sm:h-40 md:h-44 overflow-hidden bg-gray-900">
                   <img
                     src={project.image}
@@ -291,7 +281,6 @@ const Projects = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
-                  {/* Category Badge */}
                   <div className={`absolute top-2 left-2 md:top-3 md:left-3 px-1.5 md:px-2 py-0.5 rounded-full text-[8px] md:text-[10px] font-medium text-white shadow-lg bg-gradient-to-r ${
                     project.category === 'frontend' ? 'from-green-500 to-emerald-500' :
                     project.category === 'backend' ? 'from-blue-500 to-cyan-500' :
@@ -300,7 +289,6 @@ const Projects = () => {
                     {categoryNames[project.category]}
                   </div>
 
-                  {/* Featured Badge */}
                   {project.featured && (
                     <div className="absolute top-2 right-2 md:top-3 md:right-3 px-1.5 md:px-2 py-0.5 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-[7px] md:text-[9px] font-semibold flex items-center gap-0.5 md:gap-1">
                       <FaStar className="w-2 h-2 md:w-2.5 md:h-2.5" />
@@ -308,7 +296,6 @@ const Projects = () => {
                     </div>
                   )}
 
-                  {/* Hover Overlay Buttons */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 md:gap-3">
                     <a
                       href={project.liveLink}
@@ -331,7 +318,6 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-3 md:p-4">
                   <h3 className="text-sm md:text-base font-bold text-white mb-1 group-hover:text-purple-400 transition-colors line-clamp-1">
                     {i18n.language === 'en' ? project.title : project.titleAr}
@@ -340,7 +326,6 @@ const Projects = () => {
                     {i18n.language === 'en' ? project.description.substring(0, 60) : project.descriptionAr.substring(0, 60)}...
                   </p>
 
-                  {/* Tech Stack */}
                   <div className="flex flex-wrap gap-1 md:gap-1.5 mb-2 md:mb-3">
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span
@@ -357,14 +342,13 @@ const Projects = () => {
                     )}
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="flex gap-1.5 md:gap-2 pt-1.5 md:pt-2 border-t border-gray-800">
                     <button 
                       className="flex-1 flex items-center justify-center gap-1 py-1 md:py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-[9px] md:text-[10px] font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
                       onClick={() => openModal(project)}
                     >
                       <FaEye className="w-2 h-2 md:w-2.5 md:h-2.5" />
-                      View Details
+                      {t('projects.viewDetails')}
                     </button>
                   </div>
                 </div>
@@ -372,14 +356,12 @@ const Projects = () => {
             ))}
           </div>
 
-          {/* No Projects Message */}
           {filteredProjects.length === 0 && (
             <div className="text-center py-8 md:py-12">
-              <p className="text-gray-400 text-xs md:text-sm">No projects found in this category.</p>
+              <p className="text-gray-400 text-xs md:text-sm">{t('projects.noProjects')}</p>
             </div>
           )}
 
-          {/* Show More & View All Buttons */}
           {hasMore && filteredProjects.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -395,7 +377,7 @@ const Projects = () => {
                   className="group px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2 shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300"
                 >
                   <FaEye className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                  <span>Show More</span>
+                  <span>{t('projects.showMore')}</span>
                   <span className="text-[9px] md:text-xs bg-white/20 px-1 md:px-1.5 py-0.5 rounded-full">
                     {filteredProjects.length - visibleCount}
                   </span>
@@ -409,7 +391,7 @@ const Projects = () => {
                   className="group px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl border border-purple-500 text-purple-400 text-xs md:text-sm font-medium hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center gap-1.5 md:gap-2"
                 >
                   <FaLayerGroup className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                  <span>View All</span>
+                  <span>{t('projects.viewAll')}</span>
                   <span className="text-[9px] md:text-xs">({filteredProjects.length})</span>
                   <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </motion.button>
@@ -417,7 +399,6 @@ const Projects = () => {
             </motion.div>
           )}
 
-          {/* GitHub Link */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
@@ -434,8 +415,8 @@ const Projects = () => {
                 <FaGithub className="w-3 h-3 md:w-4 md:h-4 text-gray-400 group-hover:text-purple-400" />
               </div>
               <div className="text-left">
-                <div className="text-[8px] md:text-[10px] text-gray-500 group-hover:text-purple-400 transition-colors">GitHub</div>
-                <div className="text-[10px] md:text-xs text-white font-medium group-hover:text-purple-400 transition-colors">View all projects</div>
+                <div className="text-[8px] md:text-[10px] text-gray-500 group-hover:text-purple-400 transition-colors">{t('projects.github')}</div>
+                <div className="text-[10px] md:text-xs text-white font-medium group-hover:text-purple-400 transition-colors">{t('projects.viewAllProjects')}</div>
               </div>
               <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-400 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all duration-300" />
             </a>
@@ -443,7 +424,6 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Modal لعرض تفاصيل المشروع */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -460,7 +440,6 @@ const Projects = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-purple-500/30"
             >
-              {/* زر الإغلاق */}
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-gray-800/80 flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-500 transition-all duration-300"
@@ -468,7 +447,6 @@ const Projects = () => {
                 <FaTimes className="w-4 h-4" />
               </button>
 
-              {/* صورة المشروع */}
               <div className="relative h-56 overflow-hidden">
                 <img
                   src={selectedProject.image}
@@ -480,20 +458,17 @@ const Projects = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
                 
-                {/* Category Badge in Modal */}
                 <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg bg-gradient-to-r ${
                   selectedProject.category === 'frontend' ? 'from-green-500 to-emerald-500' :
                   selectedProject.category === 'backend' ? 'from-blue-500 to-cyan-500' :
                   'from-purple-500 to-pink-500'
                 }`}>
-                  {selectedProject.category === 'frontend' ? 'Frontend' : 
-                   selectedProject.category === 'backend' ? 'Backend' : 'Full Stack'}
+                  {selectedProject.category === 'frontend' ? t('projects.frontend') : 
+                   selectedProject.category === 'backend' ? t('projects.backend') : t('projects.fullStack')}
                 </div>
               </div>
 
-              {/* المحتوى */}
               <div className="p-6 space-y-5">
-                {/* العنوان */}
                 <div>
                   <h2 className="text-2xl font-bold text-white">
                     {i18n.language === 'en' ? selectedProject.title : selectedProject.titleAr}
@@ -508,20 +483,18 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* الوصف */}
                 <div>
                   <h3 className="text-sm font-semibold text-purple-400 mb-2 flex items-center gap-2">
-                    <FaInfoCircle className="w-3.5 h-3.5" /> Description
+                    <FaInfoCircle className="w-3.5 h-3.5" /> {t('projects.description')}
                   </h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
                     {i18n.language === 'en' ? selectedProject.description : selectedProject.descriptionAr}
                   </p>
                 </div>
 
-                {/* التقنيات */}
                 <div>
                   <h3 className="text-sm font-semibold text-purple-400 mb-2 flex items-center gap-2">
-                    <FaCode className="w-3.5 h-3.5" /> Technologies
+                    <FaCode className="w-3.5 h-3.5" /> {t('projects.technologies')}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech, i) => (
@@ -535,16 +508,14 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* معلومات إضافية */}
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-gray-400 text-xs">
                     <FaTag className="w-3.5 h-3.5 text-purple-500" />
-                    <span>{selectedProject.category === 'frontend' ? 'Frontend Project' : 
-                           selectedProject.category === 'backend' ? 'Backend Project' : 'Full Stack Project'}</span>
+                    <span>{selectedProject.category === 'frontend' ? t('projects.frontendProject') : 
+                           selectedProject.category === 'backend' ? t('projects.backendProject') : t('projects.fullStackProject')}</span>
                   </div>
                 </div>
 
-                {/* أزرار الإجراءات */}
                 <div className="flex gap-3 pt-4 border-t border-gray-800">
                   <a
                     href={selectedProject.liveLink}
@@ -553,7 +524,7 @@ const Projects = () => {
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
                   >
                     <FaExternalLinkAlt className="w-3.5 h-3.5" />
-                    Live Demo
+                    {t('projects.viewLive')}
                   </a>
                   <a
                     href={selectedProject.githubLink}
@@ -562,7 +533,7 @@ const Projects = () => {
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-600 text-gray-300 text-sm font-medium hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-400 transition-all duration-300"
                   >
                     <FaGithub className="w-3.5 h-3.5" />
-                    Source Code
+                    {t('projects.viewCode')}
                   </a>
                 </div>
               </div>
