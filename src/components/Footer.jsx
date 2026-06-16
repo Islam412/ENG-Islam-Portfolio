@@ -32,6 +32,9 @@ const Footer = () => {
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
               {t('nav.projects')}
             </a>
+            <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
+              {t('nav.contact')}
+            </a>
           </div>
         </div>
       </div>

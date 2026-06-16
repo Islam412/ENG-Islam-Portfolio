@@ -5,10 +5,13 @@ import { FaCode, FaBars, FaTimes } from 'react-icons/fa';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  // تحديد الاسم حسب اللغة
+  const displayName = i18n.language === 'ar' ? 'إسلام حمدي' : 'Islam Hamdy';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,7 +71,7 @@ const Navbar = () => {
           >
             <FaCode className="w-6 h-6 md:w-7 md:h-7 text-purple-500" />
             <span className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent whitespace-nowrap">
-              Islam Hamdy
+              {displayName}
             </span>
           </motion.a>
 
