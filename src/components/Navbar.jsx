@@ -60,7 +60,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <motion.a
             href="#home"
             onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
@@ -73,7 +72,6 @@ const Navbar = () => {
             </span>
           </motion.a>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item, index) => (
               <motion.a
@@ -102,7 +100,6 @@ const Navbar = () => {
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu Button - Improved */}
           <div className="flex items-center gap-2 md:hidden">
             <LanguageSwitcher />
             <motion.button
@@ -123,7 +120,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Improved Animation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
