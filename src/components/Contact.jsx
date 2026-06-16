@@ -116,7 +116,7 @@ const Contact = () => {
             </div>
 
             <div className="bg-dark-card rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Social Media</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">{t('contact.socialMedia')}</h3>
               <div className="flex flex-wrap gap-6">
                 {socialLinks.map((social, index) => (
                   <motion.a
