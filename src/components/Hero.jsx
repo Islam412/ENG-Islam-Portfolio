@@ -1,34 +1,114 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaArrowDown, FaDownload, FaCode } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
+// ✅ مكون العداد المتحرك
+const AnimatedCounter = ({ end, duration = 2000, suffix = '+' }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const increment = end / (duration / 16);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+              setCount(end);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, 16);
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [end, duration, hasAnimated]);
+
+  return (
+    <span ref={ref} className="text-2xl font-bold text-white">
+      {count}{suffix}
+    </span>
+  );
+};
+
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [text, setText] = useState('');
   const [index, setIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const timeoutRef = useRef(null);
   
-  const roles = ['Full Stack Developer', 'React Expert', 'Django Developer', 'UI/UX Enthusiast'];
+  // ✅ الأدوار مترجمة حسب اللغة
+  const rolesEn = ['Full Stack Developer', 'React Expert', 'Django Developer', 'UI/UX Enthusiast'];
+  const rolesAr = ['مطور ويب فول ستاك', 'خبير React', 'مطور Django', 'مهتم بتجربة المستخدم'];
+  
+  // اختيار الأدوار حسب اللغة
+  const roles = i18n.language === 'ar' ? rolesAr : rolesEn;
   
   useEffect(() => {
-    if (index < roles.length) {
-      const currentText = roles[index];
-      let i = 0;
-      const typing = setInterval(() => {
-        if (i <= currentText.length) {
-          setText(currentText.slice(0, i));
-          i++;
-        } else {
-          clearInterval(typing);
-          setTimeout(() => {
-            setIndex(prev => (prev + 1) % roles.length);
-          }, 2000);
-        }
-      }, 100);
-      return () => clearInterval(typing);
+    // تنظيف الـ timeout السابق
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-  }, [index]);
+
+    const currentRole = roles[index];
+    const isComplete = !isDeleting && text === currentRole;
+    const isDeleted = isDeleting && text === '';
+
+    if (isComplete) {
+      // انتظر 2 ثانية قبل بدء الحذف
+      timeoutRef.current = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2000);
+      return () => clearTimeout(timeoutRef.current);
+    }
+
+    if (isDeleted) {
+      // انتقل للكلمة التالية
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % roles.length);
+      return;
+    }
+
+    // سرعة الكتابة والحذف
+    const speed = isDeleting ? 50 : 100;
+    
+    timeoutRef.current = setTimeout(() => {
+      if (isDeleting) {
+        setText(currentRole.slice(0, text.length - 1));
+      } else {
+        setText(currentRole.slice(0, text.length + 1));
+      }
+    }, speed);
+
+    return () => clearTimeout(timeoutRef.current);
+  }, [text, isDeleting, index, roles]);
+
+  // إعادة تعيين عند تغيير اللغة
+  useEffect(() => {
+    setText('');
+    setIndex(0);
+    setIsDeleting(false);
+  }, [i18n.language]);
 
   const socialLinks = [
     { icon: FaGithub, href: personalInfo.github, color: 'hover:bg-gray-600' },
@@ -44,14 +124,20 @@ const Hero = () => {
     link.click();
   };
 
+  // تحديد الاسم حسب اللغة
+  const displayName = i18n.language === 'ar' ? 'إسلام حمدي' : 'Islam Hamdy';
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* 3D Animated Background */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000" />
+        
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -91,7 +177,7 @@ const Hero = () => {
               className="text-5xl lg:text-7xl font-bold mb-4"
             >
               <span className="gradient-text">
-                {personalInfo.name}
+                {displayName}
               </span>
             </motion.h1>
             
@@ -155,6 +241,7 @@ const Hero = () => {
               </motion.a>
             </motion.div>
 
+            {/* ✅ Stats مع عداد متحرك */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -162,16 +249,16 @@ const Hero = () => {
               className="flex justify-center lg:justify-start gap-8 mb-10"
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">3+</div>
-                <div className="text-xs text-gray-500">{t('about.experience')}</div>
+                <AnimatedCounter end={15} duration={2000} suffix="+" />
+                <div className="text-xs text-gray-500">{t('about.clients')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">20+</div>
+                <AnimatedCounter end={20} duration={2000} suffix="+" />
                 <div className="text-xs text-gray-500">{t('about.projects')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">15+</div>
-                <div className="text-xs text-gray-500">{t('about.clients')}</div>
+                <AnimatedCounter end={4} duration={2000} suffix="+" />
+                <div className="text-xs text-gray-500">{t('about.experience')}</div>
               </div>
             </motion.div>
 
@@ -215,7 +302,7 @@ const Hero = () => {
                 <div className="w-full h-full rounded-full overflow-hidden bg-dark-bg">
                   <img 
                     src="/images/profile-main.jpg" 
-                    alt={personalInfo.name}
+                    alt={displayName}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     onError={(e) => {
                       e.target.src = 'profile/islam.jpg';
