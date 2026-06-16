@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { 
   FaCode, FaUsers, FaAward, 
   FaEnvelope, FaPhone, FaLaptopCode, FaGithub, FaLinkedin, 
-  FaFacebook, FaInstagram, FaQuoteLeft, FaMapMarkerAlt 
+  FaFacebook, FaInstagram, FaQuoteLeft 
 } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
@@ -168,7 +168,7 @@ const About = () => {
               </motion.a>
             </div>
 
-            <div className="grid grid-cols-1 gap-3">
+            {/* <div className="grid grid-cols-1 gap-3">
               <motion.div 
                 className="flex items-center gap-3 p-3 bg-gray-900/50 rounded-xl border border-gray-800"
               >
@@ -180,7 +180,7 @@ const About = () => {
                   <div className="text-xs text-gray-300">{personalInfo.location}</div>
                 </div>
               </motion.div>
-            </div>
+            </div> */}
 
             <div className="pt-3">
               <div className="flex items-center gap-2 mb-3">

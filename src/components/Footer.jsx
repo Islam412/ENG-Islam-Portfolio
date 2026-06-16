@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { FaCode } from 'react-icons/fa';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentYear = new Date().getFullYear();
+  
+  // تحديد الاسم حسب اللغة
+  const name = i18n.language === 'ar' ? 'إسلام حمدي' : 'Islam Hamdy';
 
   return (
     <footer className="bg-dark-card border-t border-gray-800 py-8">
@@ -13,7 +16,7 @@ const Footer = () => {
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <FaCode className="w-6 h-6 text-purple-500" />
             <span className="text-gray-400">
-              © {currentYear} Islam Hamdy. {t('footer.rights')}
+              {t('footer.rights')} © {name} {currentYear} . 
             </span>
           </div>
           <div className="flex gap-6">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope, FaPhone, FaPaperPlane } from 'react-icons/fa';
 import { personalInfo } from '../data/portfolioData';
 
 const Contact = () => {
@@ -108,10 +108,10 @@ const Contact = () => {
                   <FaPhone className="w-5 h-5" />
                   <span>{personalInfo.phone}</span>
                 </a>
-                <div className="flex items-center gap-4 text-gray-400">
+                {/* <div className="flex items-center gap-4 text-gray-400">
                   <FaMapMarkerAlt className="w-5 h-5" />
                   <span>{personalInfo.location}</span>
-                </div>
+                </div> */}
               </div>
             </div>
 
