@@ -43,7 +43,7 @@ const About = () => {
     { icon: FaCode, value: 20, label: t('about.projects'), suffix: '+' },
     { icon: FaLaptopCode, value: 4, label: t('about.experience'), suffix: '+' },
     { icon: FaAward, value: 15, label: t('about.technologies'), suffix: '+' },
-    { icon: FaUsers, value: 10, label: t('about.clients'), suffix: '+' },
+    { icon: FaUsers, value: 15, label: t('about.clients'), suffix: '+' },
   ];
 
   const profileImage = '/profile/islam2.jpg';
