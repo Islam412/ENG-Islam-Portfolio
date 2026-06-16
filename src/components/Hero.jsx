@@ -119,7 +119,7 @@ const Hero = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv-islam-hamdy.pdf';
+    link.href = '/cv/Islam_Hamdy_CV.pdf';
     link.download = 'Islam_Hamdy_CV.pdf';
     link.click();
   };
