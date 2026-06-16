@@ -46,17 +46,12 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* 3D Animated Background */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000" />
-        
-        {/* Animated Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        
-        {/* Floating Particles */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -73,7 +68,6 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          {/* Left Side */}
           <motion.div 
             className="text-center lg:text-left flex-1"
             initial={{ opacity: 0, x: -50 }}
@@ -87,7 +81,7 @@ const Hero = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 mb-6"
             >
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm text-purple-400">Available for work</span>
+              <span className="text-sm text-purple-400">{t('hero.available')}</span>
             </motion.div>
 
             <motion.h1 
@@ -146,7 +140,7 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
-                Download CV
+                {t('hero.downloadCV')}
               </motion.button>
               
               <motion.a
@@ -161,7 +155,6 @@ const Hero = () => {
               </motion.a>
             </motion.div>
 
-            {/* Stats */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -170,19 +163,18 @@ const Hero = () => {
             >
               <div className="text-center">
                 <div className="text-2xl font-bold text-white">3+</div>
-                <div className="text-xs text-gray-500">Years Exp</div>
+                <div className="text-xs text-gray-500">{t('about.experience')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-white">20+</div>
-                <div className="text-xs text-gray-500">Projects</div>
+                <div className="text-xs text-gray-500">{t('about.projects')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-white">15+</div>
-                <div className="text-xs text-gray-500">Clients</div>
+                <div className="text-xs text-gray-500">{t('about.clients')}</div>
               </div>
             </motion.div>
 
-            {/* Social Links */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -207,7 +199,6 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Circular Profile Image with 3D Effect */}
           <motion.div 
             className="flex-1 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -215,15 +206,11 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative group">
-              {/* Animated Outer Rings */}
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-500 animate-spin-slow" />
               <div className="absolute -inset-8 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 rounded-full blur-2xl opacity-30 group-hover:opacity-60 transition duration-700 animate-spin-reverse" />
-              
-              {/* Decorative Rings */}
               <div className="absolute -inset-2 rounded-full border-2 border-purple-500/30 animate-spin-slow" />
               <div className="absolute -inset-6 rounded-full border border-cyan-500/20 animate-spin-reverse" />
               
-              {/* Profile Circle Image */}
               <div className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-600 p-1 shadow-2xl">
                 <div className="w-full h-full rounded-full overflow-hidden bg-dark-bg">
                   <img 
@@ -237,23 +224,20 @@ const Hero = () => {
                 </div>
               </div>
               
-              {/* Floating Badge */}
               <motion.div 
                 className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900/90 backdrop-blur-sm px-5 py-2 rounded-full border border-purple-500/50 shadow-lg"
                 animate={{ y: [0, -5, 0] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               >
-                <span className="text-sm font-semibold gradient-text">⚡ Full Stack Developer</span>
+                <span className="text-sm font-semibold gradient-text">⚡ {t('hero.title')}</span>
               </motion.div>
               
-              {/* Decorative Elements */}
               <div className="absolute -top-8 -right-8 w-16 h-16 bg-purple-500/20 rounded-full blur-xl" />
               <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl" />
             </div>
           </motion.div>
         </div>
 
-        {/* Contact Info Bar */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -274,7 +258,6 @@ const Hero = () => {
           </a>
         </motion.div>
 
-        {/* Scroll Indicator */}
         <motion.div
           animate={{ y: [0, 15, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
