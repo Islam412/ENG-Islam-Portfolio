@@ -18,7 +18,6 @@ function App() {
     document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
   }, [i18n.language]);
 
-  // ✅ تحسين Particles - استخدام requestAnimationFrame
   useEffect(() => {
     let animationId;
     const particlesContainer = document.createElement('div');
@@ -41,13 +40,10 @@ function App() {
       particles.push(particle);
     }
 
-    // ✅ استخدام requestAnimationFrame للتحسين
     const animateParticles = () => {
-      // تحديث بسيط للجسيمات
       animationId = requestAnimationFrame(animateParticles);
     };
     
-    // تشغيل الأنيميشن فقط إذا كان الجهاز قوياً
     if (window.innerWidth > 768) {
       animateParticles();
     }
@@ -62,20 +58,16 @@ function App() {
 
   return (
     <div className="bg-dark-bg min-h-screen relative">
-      {/* Cursor Effect - فقط للشاشات الكبيرة */}
       {window.innerWidth > 768 && <CursorEffect />}
       
-      {/* Animated Background */}
       <div className="animated-bg" />
       
-      {/* Glow Orbs - تقليل العدد على الموبايل */}
       <div className="glow-orb glow-orb-1" />
       <div className="glow-orb glow-orb-2" />
       {window.innerWidth > 768 && <div className="glow-orb glow-orb-3" />}
       {window.innerWidth > 1024 && <div className="glow-orb glow-orb-4" />}
       {window.innerWidth > 1024 && <div className="glow-orb glow-orb-5" />}
       
-      {/* Light Rays - مخفية على الموبايل */}
       {window.innerWidth > 768 && (
         <div className="light-rays">
           <div className="ray" />
@@ -87,7 +79,6 @@ function App() {
         </div>
       )}
       
-      {/* Light Effect Overlay */}
       <div className="light-effect" />
       
       <Navbar />
