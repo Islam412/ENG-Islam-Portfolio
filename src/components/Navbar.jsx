@@ -35,7 +35,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ✅ منع التمرير عند فتح القائمة
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -90,7 +89,6 @@ const Navbar = () => {
               </span>
             </motion.a>
 
-            {/* ✅ روابط سطح المكتب */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
               {navItems.map((item) => (
                 <motion.a
@@ -116,7 +114,6 @@ const Navbar = () => {
               <LanguageSwitcher />
             </div>
 
-            {/* ✅ أزرار الموبايل */}
             <div className="flex items-center gap-2 md:hidden">
               <LanguageSwitcher />
               <motion.button
@@ -138,7 +135,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      {/* ✅ قائمة الموبايل */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -149,7 +145,6 @@ const Navbar = () => {
             className="fixed inset-0 z-40 md:hidden"
             style={{ top: '64px' }}
           >
-            {/* خلفية */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -158,7 +153,6 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             />
             
-            {/* المحتوى */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
