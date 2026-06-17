@@ -304,7 +304,7 @@ const Hero = () => {
               <div className="relative w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-600 p-1 shadow-2xl">
                 <div className="w-full h-full rounded-full overflow-hidden bg-dark-bg">
                   <img 
-                    src="/images/profile-main.jpg" 
+                    src="/profile/islam.jpg"
                     alt={displayName}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     onError={(e) => {
