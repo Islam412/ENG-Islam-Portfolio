@@ -1064,3 +1064,105 @@ img.loading {
 img.loaded {
   opacity: 1;
 }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+#home {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.overflow-hidden {
+  overflow: visible !important;
+}
+
+.fade-in {
+  opacity: 1 !important;
+}
+
+nav,
+.navbar,
+.fixed {
+  overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  .md\:hidden {
+    display: flex !important;
+    position: relative !important;
+    z-index: 99999 !important;
+    overflow: visible !important;
+  }
+  
+  button[aria-label*="menu"],
+  button[aria-label="Toggle menu"] {
+    position: relative !important;
+    z-index: 99999 !important;
+    min-width: 56px !important;
+    min-height: 56px !important;
+    width: 56px !important;
+    height: 56px !important;
+    padding: 8px !important;
+    background: rgba(139, 92, 246, 0.25) !important;
+    border: 2px solid rgba(139, 92, 246, 0.6) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  button[aria-label*="menu"] svg,
+  button[aria-label="Toggle menu"] svg {
+    width: 28px !important;
+    height: 28px !important;
+    color: white !important;
+  }
+  
+  button[aria-label*="menu"]:active,
+  button[aria-label="Toggle menu"]:active {
+    transform: scale(0.9) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  button[aria-label*="menu"],
+  button[aria-label="Toggle menu"] {
+    min-width: 52px !important;
+    min-height: 52px !important;
+    width: 52px !important;
+    height: 52px !important;
+  }
+  
+  button[aria-label*="menu"] svg,
+  button[aria-label="Toggle menu"] svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}

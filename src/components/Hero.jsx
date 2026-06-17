@@ -128,9 +128,12 @@ const Hero = () => {
   const displayName = i18n.language === 'ar' ? 'إسلام حمدي' : 'Islam Hamdy';
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section 
+      id="home" 
+      className="min-h-screen min-h-[100dvh] flex items-center justify-center relative overflow-visible"
+    >
       {/* 3D Animated Background */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20" />
         <div className="absolute top-20 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000" />

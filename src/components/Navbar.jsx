@@ -74,9 +74,11 @@ const Navbar = () => {
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled ? 'bg-dark-bg/95 backdrop-blur-lg shadow-lg' : 'bg-dark-bg/80 backdrop-blur-sm'
         }`}
+        style={{ overflow: 'visible' }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
+            {/* الشعار */}
             <motion.a
               href="#home"
               onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
@@ -89,6 +91,7 @@ const Navbar = () => {
               </span>
             </motion.a>
 
+            {/* روابط سطح المكتب */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
               {navItems.map((item) => (
                 <motion.a
@@ -114,8 +117,12 @@ const Navbar = () => {
               <LanguageSwitcher />
             </div>
 
+            {/* ✅ أزرار الموبايل - الترتيب الجديد: LanguageSwitcher ثم زر القائمة */}
             <div className="flex items-center gap-2 md:hidden">
+              {/* زر تغيير اللغة */}
               <LanguageSwitcher />
+              
+              {/* زر القائمة */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className="relative w-10 h-10 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 flex items-center justify-center text-gray-300 hover:text-white focus:outline-none transition-all duration-300 border border-purple-500/30 hover:border-purple-500/60"
@@ -135,6 +142,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
+      {/* القائمة المنسدلة للموبايل */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -149,7 +157,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/70 backdrop-blur-md"
               onClick={() => setIsOpen(false)}
             />
             
@@ -166,7 +174,7 @@ const Navbar = () => {
                     key={item.name}
                     href={`#${item.href}`}
                     onClick={(e) => { e.preventDefault(); scrollToSection(item.href); }}
-                    className={`block py-3 px-4 text-gray-300 hover:text-purple-500 transition-colors rounded-lg hover:bg-purple-500/10 ${
+                    className={`block py-4 px-4 text-gray-300 hover:text-purple-500 transition-colors rounded-lg hover:bg-purple-500/10 text-base ${
                       activeSection === item.href ? 'text-purple-500 bg-purple-500/10' : ''
                     }`}
                     initial={{ opacity: 0, x: -20 }}

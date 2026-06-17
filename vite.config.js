@@ -17,10 +17,18 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'framer-motion'],
-          i18n: ['i18next', 'react-i18next'],
-          icons: ['react-icons'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('framer-motion')) {
+              return 'vendor';
+            }
+            if (id.includes('i18next') || id.includes('react-i18next')) {
+              return 'i18n';
+            }
+            if (id.includes('react-icons')) {
+              return 'icons';
+            }
+          }
         },
       },
     },

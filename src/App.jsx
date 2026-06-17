@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import CursorEffect from './components/CursorEffect';
 
-
 function App() {
   const { i18n } = useTranslation();
 
@@ -57,7 +56,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-dark-bg min-h-screen relative">
+    <div className="bg-dark-bg min-h-screen min-h-[100dvh] flex flex-col relative">
       {window.innerWidth > 768 && <CursorEffect />}
       
       <div className="animated-bg" />
@@ -82,7 +81,7 @@ function App() {
       <div className="light-effect" />
       
       <Navbar />
-      <main>
+      <main className="flex-1">
         <Hero />
         <About />
         <Skills />
